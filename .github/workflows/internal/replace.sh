@@ -15,5 +15,7 @@ builder=$(cat ./compile.sh)
 
 target=$(cat ./install.toml)
 
+mkdir -p ./dist/
+
 target="${target//"\${{ref:installer}}"/"\n${installer}\n"}"
-echo -e "${target//"\${{ref:builder}}"/"\n${builder}\n"}" >./out/install.gen.toml
+echo -e "### AUTO GENERATED (DO NOT MODIFY THIS FILE MANUALLY) ###\n\n${target//"\${{ref:builder}}"/"\n${builder}\n"}" >./dist/install.toml

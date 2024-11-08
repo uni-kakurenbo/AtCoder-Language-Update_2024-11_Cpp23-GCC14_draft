@@ -16,7 +16,7 @@ install = '''${{ref:installer}}''' # 後から置換
 compile = '''${{ref:builder}}''' # 後から置換
 
 execution = [
-    '''./a.out'''
+    './a.out'
 ]
 
 
@@ -33,15 +33,15 @@ execution = [
         { name = 'BSL 1.0', url = 'https://www.boost.org/LICENSE_1_0.txt' }
     ]
 
+[library.Eigen]
+    version = '3.4.0'
+    licenses = [
+        { name = 'MPL 2.0', url = 'https://www.mozilla.org/en-US/MPL/2.0/' },
+    ]
+
 [library.GMP]
     version = '6.3.0'
     licenses = [
         { name = 'GNU LGPL v3', url = 'https://www.gnu.org/licenses/lgpl-3.0.html' },
         { name = 'GNU GPL v2', url = 'https://www.gnu.org/licenses/old-licenses/gpl-2.0.html' }
-    ]
-
-[library.Eigen]
-    version = '3.4.0'
-    licenses = [
-        { name = 'MPL 2.0', url = 'https://www.mozilla.org/en-US/MPL/2.0/' },
     ]

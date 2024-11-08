@@ -1,0 +1,31 @@
+name: Run test
+run-name: ${{ github.workflow }} (${{ github.ref_name }})
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    run:
+        runs-on: ${{ vars.RUNNER_IMAGE }}
+
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.head_ref || github.ref_name }}
+                  fetch-depth: 0
+
+            - name: Install
+              run: ./install.sh
+
+            - name: Clean-up
+              run: |
+                  rm -rf ./tmp/
+
+            - name: Run test
+              run: ./.github/workflows/internal/test.sh
