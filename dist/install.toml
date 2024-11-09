@@ -16,13 +16,8 @@ object = 'a.out'
 
 install = '''
 #!/bin/bash
-########## AUTO-GENERATED ##########
-# Do not modify this file manually #
-####################################
+set -ue
 
-set -eu
-
-### GCC
 sudo apt-get install -y g++-14
 
 ### Libraries
@@ -54,18 +49,21 @@ sudo ./b2 "${BUILD_ARGS[@]}" stage
 sudo ./b2 "${BUILD_ARGS[@]}" --prefix=/opt/boost/gcc install
 
 # Eigen
-VERSION="3.4.0-4"
+sudo apt-get install -y libeigen3-dev
 
-set -eu
+# GMP
+sudo wget https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz -O gmp-6.3.0.tar.xz
+sudo tar -Jxf gmp-6.3.0.tar.xz
 
-sudo apt-get install -y "libeigen3-dev=${VERSION}"
+cd ./gmp-6.3.0/
 
-./installers/GMP.sh
+sudo ./configure --enable-cxx --prefix=/opt
+sudo make all
+sudo make install
 '''  # auto-replaced
-
 compile = '''
 #!/bin/bash
-set -eu
+set -ue
 
 ARGS=(
     "-std=gnu++23"
@@ -91,7 +89,7 @@ ARGS=(
     -lgmpxx -lgmp
 )
 
-g++-14 ./Main.cpp -o a.out "${ARGS[@]}"
+g++-14 ./Main.cpp "${ARGS[@]}"
 '''  # auto-replaced
 
 execution = ['./a.out']
