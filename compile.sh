@@ -14,7 +14,6 @@ ARGS=(
 
     -Wall
     -Wextra
-    -Wno-misleading-indentation
 
     "-fconstexpr-depth=2147483647"
     "-fconstexpr-loop-limit=2147483647"
