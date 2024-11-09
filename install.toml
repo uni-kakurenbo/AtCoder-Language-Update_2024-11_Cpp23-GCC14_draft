@@ -12,8 +12,8 @@ filename = 'Main.cpp'
 object = 'a.out'
 
 
-install = '''${{ref:installer}}''' # 後から置換
-compile = '''${{ref:builder}}''' # 後から置換
+install = '''${{ref:installer}}'''  # auto-replaced
+compile = '''${{ref:builder}}'''  # auto-replaced
 
 execution = [
     './a.out'
