@@ -9,9 +9,9 @@ function run-test() {
     set -eu
 
     local name
-    name="$(basename "$1")"
+    name="$(dirname "$1")/$(basename "$1")"
 
-    local directory="./tmp/run__${name}"
+    local directory="./tmp/${name}"
 
     mkdir -p "${directory}"
     cp ../compile.sh "${directory}/compile.sh"

@@ -2,14 +2,6 @@
 
 set -eu
 
-function get-content() {
-    sed 's/$/\\\\n/' "$1" |
-        sed -r '$s/\\\\n//' |
-        while IFS= read -r line; do
-            echo -n "$line"
-        done
-}
-
 installer=$(cat ./install.sh)
 builder=$(cat ./compile.sh)
 
