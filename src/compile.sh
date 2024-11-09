@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ue
+set -eu
 
 ARGS=(
     "-std=gnu++23"
@@ -25,4 +25,4 @@ ARGS=(
     -lgmpxx -lgmp
 )
 
-g++-14 ./Main.cpp "${ARGS[@]}"
+g++-14 ./Main.cpp -o a.out "${ARGS[@]}"

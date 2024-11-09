@@ -1,4 +1,4 @@
-########## AUTO GENERATED ##########
+########## AUTO-GENERATED ##########
 # Do not modify this file manually #
 ####################################
 
@@ -8,32 +8,44 @@ language = 'C++23'
 name = 'GCC'
 version = '14.2.0'
 
-license = [{ name = 'GNU GPL v3', url = 'https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Copying.html' }]
-
 
 filename = 'Main.cpp'
 
 object = 'a.out'
 
 
-install = '''\n#!/bin/bash
-set -ue
+install = '''
+#!/bin/bash
+########## AUTO-GENERATED ##########
+# Do not modify this file manually #
+####################################
 
+set -eu
+
+### GCC
 sudo apt-get install -y g++-14
 
 ### Libraries
 sudo apt-get install -y build-essential
 cd /tmp
 
-# AtCoder Library
-sudo wget https://github.com/atcoder/ac-library/releases/download/v1.5.1/ac-library.zip -O ac-library.zip
+# AC-Library
+VERSION="1.5.1"
+
+set -ue
+
+sudo wget "https://github.com/atcoder/ac-library/releases/download/v${VERSION}/ac-library.zip" -O ac-library.zip
 sudo unzip /tmp/ac-library.zip -d /opt/ac-library/
 
 # Boost
-sudo wget https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.bz2 -O boost_1_86_0.tar.bz2
-sudo tar -jxf boost_1_86_0.tar.bz2
+VERSION="1.86.0"
 
-cd ./boost_1_86_0/
+set -eu
+
+sudo wget "https://archives.boost.io/release/${VERSION}/source/boost_${VERSION//./_}.tar.bz2" -O boost.tar.bz2
+sudo tar -jxf boost.tar.bz2
+
+cd ./boost/
 
 sudo ./bootstrap.sh --with-toolset=gcc --without-libraries=mpi,graph_parallel
 
@@ -42,19 +54,18 @@ sudo ./b2 "${BUILD_ARGS[@]}" stage
 sudo ./b2 "${BUILD_ARGS[@]}" --prefix=/opt/boost/gcc install
 
 # Eigen
-sudo apt-get install -y libeigen3-dev
+VERSION="3.4.0-4"
 
-# GMP
-sudo wget https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz -O gmp-6.3.0.tar.xz
-sudo tar -Jxf gmp-6.3.0.tar.xz
+set -eu
 
-cd ./gmp-6.3.0/
+sudo apt-get install -y "libeigen3-dev=${VERSION}"
 
-sudo ./configure --enable-cxx --prefix=/opt
-sudo make all
-sudo make install\n'''  # auto-replaced
-compile = '''\n#!/bin/bash
-set -ue
+./installers/GMP.sh
+'''  # auto-replaced
+
+compile = '''
+#!/bin/bash
+set -eu
 
 ARGS=(
     "-std=gnu++23"
@@ -80,14 +91,17 @@ ARGS=(
     -lgmpxx -lgmp
 )
 
-g++-14 ./Main.cpp "${ARGS[@]}"\n'''  # auto-replaced
+g++-14 ./Main.cpp -o a.out "${ARGS[@]}"
+'''  # auto-replaced
 
-execution = [
-    './a.out'
-]
+execution = ['./a.out']
 
 
-### Libraries
+[[license]]
+    name = 'GNU GPL v3'
+    url = 'https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Copying.html'
+
+
 [library.AC-Library]
     version = '1.5.1'
     license = [
@@ -101,7 +115,7 @@ execution = [
     ]
 
 [library.Eigen]
-    version = '3.4.0'
+    version = '3.4.0-4'
     license = [
         { name = 'MPL 2.0', url = 'https://www.mozilla.org/en-US/MPL/2.0/' },
     ]

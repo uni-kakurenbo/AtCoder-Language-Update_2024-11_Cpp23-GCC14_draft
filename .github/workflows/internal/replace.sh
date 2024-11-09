@@ -1,16 +1,13 @@
 #!/bin/bash
-
 set -eu
 
-installer=$(cat ./install.sh)
-builder=$(cat ./compile.sh)
-
-target=$(cat ./install.toml)
-
+rm -rf ./dist/
 mkdir -p ./dist/
 
-target="${target//"\${{ref:installer}}"/"\n${installer}\n"}"
+DIR="$(dirname "$0")"
 
-cat ./assets/warn.txt >./dist/install.toml
-echo >>./dist/install.toml
-echo "${target//"\${{ref:builder}}"/"\n${builder}\n"}" >>./dist/install.toml
+"${DIR}/replacers/sub-installers.sh"
+"${DIR}/replacers/installer.sh"
+"${DIR}/replacers/config.sh"
+
+cp ./src/compile.sh ./dist/compile.sh

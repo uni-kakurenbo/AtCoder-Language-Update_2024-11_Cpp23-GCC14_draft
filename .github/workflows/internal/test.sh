@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -eu
 
 cd ./test/
@@ -30,7 +29,7 @@ function run-test() {
 
 export -f run-test
 
-time find . -type f -name '*.test.cpp' | sort |
+time find ./ -type f -name '*.test.cpp' |
     xargs -P0 -I {} bash -c 'run-test {}'
 
 cd ..
