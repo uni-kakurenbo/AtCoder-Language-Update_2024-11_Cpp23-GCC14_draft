@@ -70,7 +70,6 @@ ARGS=(
 
     -Wall
     -Wextra
-    -Wno-misleading-indentation
 
     "-fconstexpr-depth=2147483647"
     "-fconstexpr-loop-limit=2147483647"
@@ -93,25 +92,25 @@ execution = [
 ### Libraries
 [library.AC-Library]
     version = '1.5.1'
-    licenses = [
+    license = [
         { name = 'CC0 1.0', url = 'https://github.com/atcoder/ac-library/blob/master/LICENSE' }
     ]
 
 [library.Boost]
     version = '1.86.0'
-    licenses = [
+    license = [
         { name = 'BSL 1.0', url = 'https://www.boost.org/LICENSE_1_0.txt' }
     ]
 
 [library.Eigen]
     version = '3.4.0'
-    licenses = [
+    license = [
         { name = 'MPL 2.0', url = 'https://www.mozilla.org/en-US/MPL/2.0/' },
     ]
 
 [library.GMP]
     version = '6.3.0'
-    licenses = [
+    license = [
         { name = 'GNU LGPL v3', url = 'https://www.gnu.org/licenses/lgpl-3.0.html' },
         { name = 'GNU GPL v2', url = 'https://www.gnu.org/licenses/old-licenses/gpl-2.0.html' }
     ]
