@@ -11,4 +11,4 @@ cd /tmp
 ./sub-installers/AC-Library.sh
 ./sub-installers/Boost.sh
 ./sub-installers/Eigen.sh
-./installers/GMP.sh
+./sub-installers/GMP.sh

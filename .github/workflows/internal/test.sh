@@ -13,7 +13,7 @@ function run-test() {
     local directory="./tmp/${name}"
 
     mkdir -p "${directory}"
-    cp ../compile.sh "${directory}/compile.sh"
+    cp ../dist/compile.sh "${directory}/compile.sh"
     cp "$1" "${directory}/Main.cpp"
 
     cd "${directory}/"
