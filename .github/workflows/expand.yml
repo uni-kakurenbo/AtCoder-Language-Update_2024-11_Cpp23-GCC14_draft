@@ -20,6 +20,7 @@ jobs:
               with:
                   ref: ${{ github.head_ref || github.ref_name }}
                   fetch-depth: 0
+                  ssh-key: ${{ secrets.SSH_KEY }}
 
             - name: Replace template
               run: ./.github/workflows/internal/replace.sh
@@ -30,10 +31,10 @@ jobs:
               run: |
                   set -eu
 
-                  git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
+                  git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
 
-                  git config --global user.name "GitHub"
-                  git config --global user.email "noreply@github.com"
+                  git config --global user.name "Template Expander"
+                  git config --global user.email "noreply@example.com"
 
                   git add ./dist/
 
