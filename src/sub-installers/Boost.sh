@@ -1,10 +1,12 @@
 #!/bin/bash
 set -eu
 
-sudo wget "https://archives.boost.io/release/${VERSION}/source/boost_${VERSION//./_}.tar.bz2" -O boost.tar.bz2
-sudo tar -jxf boost.tar.bz2
+mkdir -p ./boost/
 
-cd ./boost/
+sudo wget "https://archives.boost.io/release/${VERSION}/source/boost_${VERSION//./_}.tar.bz2" -O boost.tar.bz2
+sudo tar -jvxf boost.tar.bz2 -C ./boost/ --strip-components 1
+
+cd "./boost/"
 
 sudo ./bootstrap.sh --with-toolset=gcc --without-libraries=mpi,graph_parallel
 
