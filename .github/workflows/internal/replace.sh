@@ -21,4 +21,4 @@ target="${target//"\${{ref:installer}}"/"\n${installer}\n"}"
 
 cat ./assets/warn.txt >./dist/install.toml
 echo >>./dist/install.toml
-echo "${target//"\${{ref:builder}}"/"\n${builder}\n"}" >>./dist/install.toml
+echo -e "${target//"\${{ref:builder}}"/"\n${builder}\n"}" >>./dist/install.toml
