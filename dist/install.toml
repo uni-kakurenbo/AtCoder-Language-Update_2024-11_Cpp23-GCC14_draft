@@ -1,4 +1,4 @@
-########## AUTO GENERATED ##########
+########## AUTO-GENERATED ##########
 # Do not modify this file manually #
 ####################################
 
@@ -7,8 +7,6 @@ language = 'C++23'
 
 name = 'GCC'
 version = '14.2.0'
-
-license = [{ name = 'GNU GPL v3', url = 'https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Copying.html' }]
 
 
 filename = 'Main.cpp'
@@ -26,15 +24,23 @@ sudo apt-get install -y g++-14
 sudo apt-get install -y build-essential
 cd /tmp
 
-# AtCoder Library
-sudo wget https://github.com/atcoder/ac-library/releases/download/v1.5.1/ac-library.zip -O ac-library.zip
+# AC-Library
+VERSION="1.5.1"
+
+set -ue
+
+sudo wget "https://github.com/atcoder/ac-library/releases/download/v${VERSION}/ac-library.zip" -O ac-library.zip
 sudo unzip /tmp/ac-library.zip -d /opt/ac-library/
 
 # Boost
-sudo wget https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.bz2 -O boost_1_86_0.tar.bz2
-sudo tar -jxf boost_1_86_0.tar.bz2
+VERSION="1.86.0"
 
-cd ./boost_1_86_0/
+set -eu
+
+sudo wget "https://archives.boost.io/release/${VERSION}/source/boost_${VERSION//./_}.tar.bz2" -O boost.tar.bz2
+sudo tar -jxf boost.tar.bz2
+
+cd ./boost/
 
 sudo ./bootstrap.sh --with-toolset=gcc --without-libraries=mpi,graph_parallel
 
@@ -86,12 +92,14 @@ ARGS=(
 g++-14 ./Main.cpp "${ARGS[@]}"
 '''  # auto-replaced
 
-execution = [
-    './a.out'
-]
+execution = ['./a.out']
 
 
-### Libraries
+[[license]]
+    name = 'GNU GPL v3'
+    url = 'https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Copying.html'
+
+
 [library.AC-Library]
     version = '1.5.1'
     license = [
@@ -105,7 +113,7 @@ execution = [
     ]
 
 [library.Eigen]
-    version = '3.4.0'
+    version = '3.4.0-4'
     license = [
         { name = 'MPL 2.0', url = 'https://www.mozilla.org/en-US/MPL/2.0/' },
     ]

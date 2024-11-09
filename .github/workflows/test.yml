@@ -15,12 +15,16 @@ jobs:
                   ref: ${{ github.head_ref || github.ref_name }}
                   fetch-depth: 0
 
+            - name: Replace template
+              run: ./.github/workflows/internal/replace.sh
+
             - name: Install
-              run: ./install.sh
+              run: |
+                  chmod +x ./dist/install.sh
+                  ./dist/install.sh
 
             - name: Clean-up
-              run: |
-                  rm -rf ./tmp/
+              run: rm -rf ./tmp/
 
             - name: Run test
               run: ./.github/workflows/internal/test.sh

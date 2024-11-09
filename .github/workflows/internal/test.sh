@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -eu
 
 cd ./test/
@@ -9,12 +8,12 @@ function run-test() {
     set -eu
 
     local name
-    name="$(basename "$1")"
+    name="$(dirname "$1")/$(basename "$1")"
 
-    local directory="./tmp/run__${name}"
+    local directory="./tmp/${name}"
 
     mkdir -p "${directory}"
-    cp ../compile.sh "${directory}/compile.sh"
+    cp ../dist/compile.sh "${directory}/compile.sh"
     cp "$1" "${directory}/Main.cpp"
 
     cd "${directory}/"
@@ -30,7 +29,7 @@ function run-test() {
 
 export -f run-test
 
-time find . -type f -name '*.test.cpp' | sort |
+time find ./ -type f -name '*.test.cpp' |
     xargs -P0 -I {} bash -c 'run-test {}'
 
 cd ..
