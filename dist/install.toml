@@ -16,7 +16,8 @@ filename = 'Main.cpp'
 object = 'a.out'
 
 
-install = '''\n#!/bin/bash
+install = '''
+#!/bin/bash
 set -ue
 
 sudo apt-get install -y g++-14
@@ -52,8 +53,10 @@ cd ./gmp-6.3.0/
 
 sudo ./configure --enable-cxx --prefix=/opt
 sudo make all
-sudo make install\n'''  # auto-replaced
-compile = '''\n#!/bin/bash
+sudo make install
+'''  # auto-replaced
+compile = '''
+#!/bin/bash
 set -ue
 
 ARGS=(
@@ -80,7 +83,8 @@ ARGS=(
     -lgmpxx -lgmp
 )
 
-g++-14 ./Main.cpp "${ARGS[@]}"\n'''  # auto-replaced
+g++-14 ./Main.cpp "${ARGS[@]}"
+'''  # auto-replaced
 
 execution = [
     './a.out'
