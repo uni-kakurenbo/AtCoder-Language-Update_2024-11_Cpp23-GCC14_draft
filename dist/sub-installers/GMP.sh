@@ -6,7 +6,7 @@ VERSION="6.3.0"
 
 set -eu
 
-mkdir ./gmp/
+mkdir -p ./gmp/
 
 sudo wget "https://ftp.gnu.org/gnu/gmp/gmp-${VERSION}.tar.xz" -O gmp.tar.xz
 sudo tar -Jvxf gmp.tar.xz -C ./gmp/ --strip-components 1
