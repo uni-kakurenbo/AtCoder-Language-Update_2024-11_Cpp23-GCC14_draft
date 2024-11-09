@@ -36,7 +36,7 @@ jobs:
                   git config --global user.name "Template Expander"
                   git config --global user.email "noreply@example.com"
 
-                  git add ./dist/
+                  git add -f ./dist/
 
                   if (git diff --cached --shortstat | grep '[0-9]'); then
                     git commit -m "[workflow] expand install.toml template ${GITHUB_SHA}"

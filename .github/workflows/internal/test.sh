@@ -20,9 +20,9 @@ function run-test() {
     ./compile.sh
 
     {
-        echo -n "${name}: "
+        echo "==== ${name} ===="
         ./a.out
-        echo
+        echo "============"
     } >./log.txt
     cat ./log.txt
 }
