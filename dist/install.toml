@@ -1,3 +1,6 @@
+########## AUTO GENERATED ##########
+# Do not modify this file manually #
+####################################
 
 language = 'C++23'
 
@@ -13,8 +16,7 @@ filename = 'Main.cpp'
 object = 'a.out'
 
 
-install = '''
-#!/bin/bash
+install = '''\n#!/bin/bash
 set -ue
 
 sudo apt-get install -y g++-14
@@ -50,10 +52,8 @@ cd ./gmp-6.3.0/
 
 sudo ./configure --enable-cxx --prefix=/opt
 sudo make all
-sudo make install
-'''  # auto-replaced
-compile = '''
-#!/bin/bash
+sudo make install\n'''  # auto-replaced
+compile = '''\n#!/bin/bash
 set -ue
 
 ARGS=(
@@ -74,14 +74,13 @@ ARGS=(
     "-fconstexpr-loop-limit=2147483647"
     "-fconstexpr-ops-limit=2147483647"
 
-    -I/opt/ac-library
-    -I/opt/boost/gcc/include -L/opt/boost/gcc/lib
-    -Igmpxx -lgmp
-    -I/usr/include/eigen3
+    -I/opt/ac-library/
+    -I/opt/boost/gcc/include/ -L/opt/boost/gcc/lib/
+    -I/usr/include/eigen3/
+    -lgmpxx -lgmp
 )
 
-g++-14 "${ARGS[@]}" ./Main.cpp
-'''  # auto-replaced
+g++-14 ./Main.cpp "${ARGS[@]}"\n'''  # auto-replaced
 
 execution = [
     './a.out'
