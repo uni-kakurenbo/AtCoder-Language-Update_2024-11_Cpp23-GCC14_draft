@@ -52,7 +52,7 @@ cd ./gmp-6.3.0/
 sudo ./configure --enable-cxx --prefix=/opt
 sudo make all
 sudo make install
-''' # 後から置換
+'''  # auto-replaced
 compile = '''
 #!/bin/bash
 set -ue
@@ -83,7 +83,7 @@ ARGS=(
 )
 
 g++-14 "${ARGS[@]}" ./Main.cpp
-''' # 後から置換
+'''  # auto-replaced
 
 execution = [
     './a.out'
