@@ -1,6 +1,8 @@
-#include <print>
+#include <iostream>
 #include <Eigen/Dense>
 
+using namespace std;
+using namespace Eigen;
 
 // ref: https://qiita.com/shiro-kuma/items/0faa02aa064a3c0a460b
 signed main() {
@@ -13,9 +15,9 @@ signed main() {
   v << 2,
        3;
 
-  Eigen::MatrixXf::Index index;
-
+  MatrixXf::Index index;
   (m.colwise() - v).colwise().squaredNorm().minCoeff(&index);
 
-  std::println("Nearest neighbor is column {} : {}", index, m.col(index));
+  cout << "Nearest neighbor is column " << index << ":" << endl;
+  cout << m.col(index) << endl;
 }

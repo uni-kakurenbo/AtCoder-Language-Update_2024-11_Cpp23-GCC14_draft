@@ -18,4 +18,7 @@ target=$(cat ./install.toml)
 mkdir -p ./dist/
 
 target="${target//"\${{ref:installer}}"/"\n${installer}\n"}"
-echo -e "### AUTO GENERATED (DO NOT MODIFY THIS FILE MANUALLY) ###\n\n${target//"\${{ref:builder}}"/"\n${builder}\n"}" >./dist/install.toml
+
+cat ./assets/warn.txt >./dist/install.toml
+echo >>./dist/install.toml
+echo "${target//"\${{ref:builder}}"/"\n${builder}\n"}" >>./dist/install.toml

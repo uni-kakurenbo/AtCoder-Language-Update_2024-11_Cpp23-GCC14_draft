@@ -8,6 +8,7 @@
 //  Revision History
 //  14 Dec 99  Initial version
 
+#include <cassert>
 #include <iostream>
 #include <cassert>
 #include <cstdlib>
@@ -97,6 +98,7 @@ int main ()
     }
     catch (...) {
         cout << "Wrong exception raised!" << endl;
+        assert(false);
     }
 
     return 0;
