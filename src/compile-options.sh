@@ -17,6 +17,8 @@ COMPILE_OPTIONS=(
     "-fconstexpr-loop-limit=2147483647"
     "-fconstexpr-ops-limit=2147483647"
 
+    -lstdc++exp
+
     -I/opt/ac-library/
     -I/opt/boost/include/ -L/opt/boost/lib/
     -I/usr/include/eigen3/
