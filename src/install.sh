@@ -15,3 +15,4 @@ cd /tmp
 ./sub-installers/Boost.sh
 ./sub-installers/Eigen.sh
 ./sub-installers/GMP.sh
+./sub-installers/unordered_dense.sh

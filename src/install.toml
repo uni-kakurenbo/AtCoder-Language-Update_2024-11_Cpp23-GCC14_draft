@@ -46,3 +46,9 @@ execution = ['./a.out']
         { name = 'GNU LGPL v3', url = 'https://www.gnu.org/licenses/lgpl-3.0.html' },
         { name = 'GNU GPL v2', url = 'https://www.gnu.org/licenses/old-licenses/gpl-2.0.html' }
     ]
+
+[library.unordered_dense]
+    version = '4.4.0'
+    license = [
+        { name = 'MIT', url = 'https://github.com/martinus/unordered_dense/blob/main/LICENSE' },
+    ]

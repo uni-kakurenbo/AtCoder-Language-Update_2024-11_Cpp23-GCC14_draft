@@ -23,6 +23,7 @@ ARGS=(
     -I/opt/boost/include/ -L/opt/boost/lib/
     -I/usr/include/eigen3/
     -lgmpxx -lgmp
+    -I/opt/unordered_dense/include/ -L/opt/unordered_dense/lib/
 )
 
 g++-14 ./Main.cpp -o a.out "${ARGS[@]}"
