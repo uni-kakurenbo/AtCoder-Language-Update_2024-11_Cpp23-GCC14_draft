@@ -4,6 +4,8 @@ set -eu
 ARGS=(
     "-std=gnu++23"
 
+    -fmodules-ts
+
     -DONLINE_JUDGE
     -DATCODER
 
