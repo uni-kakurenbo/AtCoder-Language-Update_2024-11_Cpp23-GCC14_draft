@@ -34,8 +34,8 @@ function run-test() {
 
 export -f run-test
 
-find ./ -type f -name '*.test.cpp' |
-    xargs "-P$(nproc)" -I {} bash -c 'run-test {}'
+find ./ -type f -name '*.test.cpp' -print0 |
+    xargs -0 "-P$(nproc)" -I {} bash -c 'run-test {}'
 
 cd ..
 rm -rf ./tmp/
