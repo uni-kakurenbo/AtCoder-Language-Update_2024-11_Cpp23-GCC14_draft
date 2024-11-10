@@ -2,6 +2,13 @@
 ########## AUTO-GENERATED ##########
 # Do not modify this file manually #
 ####################################
+# shellcheck disable=all
+if [[ -v ATCODER ]]; then
+    PARALLEL=1
+else
+    PARALLEL="$(nproc)"
+fi
+
 VERSION="14.2.0-4ubuntu2~24.04"
 
 set -eu
