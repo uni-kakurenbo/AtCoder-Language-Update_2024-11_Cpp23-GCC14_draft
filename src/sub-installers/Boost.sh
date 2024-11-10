@@ -1,10 +1,12 @@
 #!/bin/bash
 set -eu
 
+cd /tmp
+
 mkdir -p ./boost/
 
-sudo wget -q "https://archives.boost.io/release/${VERSION}/source/boost_${VERSION//./_}.tar.bz2" -O boost.tar.bz2
-sudo tar -I pbzip2 -xf boost.tar.bz2 -C ./boost/ --strip-components 1
+sudo wget -q "https://archives.boost.io/release/${VERSION}/source/boost_${VERSION//./_}.tar.bz2" -O ./boost.tar.bz2
+sudo tar -I pbzip2 -xf ./boost.tar.bz2 -C ./boost/ --strip-components 1
 
 cd ./boost/
 
