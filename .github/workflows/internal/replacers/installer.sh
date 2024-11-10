@@ -8,10 +8,11 @@ cat ./assets/warning.txt >>./dist/install.sh
 
 REMOVABLE_HEADER="$(cat ./dist/install.sh)"
 
-echo "${REMOVABLE_HEADER}"
+VERSION="$(dasel -r toml -w json <./src/install.toml | jq '.version')"
+echo "VERSION=${VERSION}" >>./dist/install.sh
 
 INSTALLER="$(cat ./src/install.sh)"
-echo "${INSTALLER//${SHEBANG}/}" >>./dist/install.sh
+echo -e "${INSTALLER//${SHEBANG}/}" >>./dist/install.sh
 
 mkdir -p ./dist/
 
@@ -34,7 +35,7 @@ export -f replace
 
 cd ./dist/
 
-time find ./sub-installers/ -type f -name '*.sh' -print0 |
+find ./sub-installers/ -type f -name '*.sh' -print0 |
     xargs -0 -I {} bash -c "replace {} \"${REMOVABLE_HEADER}\""
 
 echo >>./install.sh
