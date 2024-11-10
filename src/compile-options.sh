@@ -3,7 +3,6 @@ COMPILE_OPTIONS=(
     "-std=gnu++23"
 
     -fmodules-ts
-    -include bits/stdc++.h
 
     -DONLINE_JUDGE
     -DATCODER
