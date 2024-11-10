@@ -1,10 +1,12 @@
 #!/bin/bash
 set -eu
 
+cd /tmp/
+
 mkdir -p ./abseil/
 
-sudo wget -q "https://github.com/abseil/abseil-cpp/releases/download/${VERSION}/abseil-cpp-${VERSION}.tar.gz" -O abseil.tar.gz
-sudo tar -I pigz -xf abseil.tar.gz -C ./abseil/ --strip-components 1
+sudo wget -q "https://github.com/abseil/abseil-cpp/releases/download/${VERSION}/abseil-cpp-${VERSION}.tar.gz" -O ./abseil.tar.gz
+sudo tar -I pigz -xf ./abseil.tar.gz -C ./abseil/ --strip-components 1
 
 cd ./abseil/
 
