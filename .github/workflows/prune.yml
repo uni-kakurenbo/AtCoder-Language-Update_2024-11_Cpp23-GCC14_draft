@@ -1,0 +1,21 @@
+name: Prune branches
+run-name: ${{ github.workflow }} (${{ github.ref_name }})
+
+on:
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+    prune:
+        if: ${{ github.event_name == 'pull_request' }}
+        runs-on: ${{ vars.RUNNER_IMAGE }}
+
+        steps:
+            - name: Git checkout
+              uses: actions/checkout@v4
+
+            - name: Remove test branches
+              env:
+                  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+              run: |
+                  git push --delete origin test/${BRANCH_NAME} || true
