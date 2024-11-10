@@ -2,12 +2,15 @@ name: Run test
 run-name: ${{ github.workflow }} (${{ github.ref_name }})
 
 on:
+    push:
+        branches:
+            - test/**
     pull_request:
     workflow_dispatch:
 
 concurrency:
     group: |
-        update-${{
+        test-${{
             startsWith(github.ref_name, 'test') && github.ref_name ||
             github.run_id
         }}
