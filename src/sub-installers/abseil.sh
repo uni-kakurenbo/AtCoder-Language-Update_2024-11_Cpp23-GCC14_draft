@@ -16,7 +16,7 @@ BUILD_ARGS=("-DABSL_PROPAGATE_CXX_STD=ON" "-DCMAKE_INSTALL_PREFIX:PATH=/opt/abse
 
 echo "Paralell: ${PARALLEL}"
 
-if [[ -v GIHUB_ACTIONS ]]; then
+if [[ -v GITHUB_ACTIONS ]]; then
     sudo cmake "${BUILD_ARGS[@]}" ../
 else
     sudo cmake -DABSL_BUILD_TESTING=ON -DABSL_USE_GOOGLETEST_HEAD=ON "${BUILD_ARGS[@]}" ../
