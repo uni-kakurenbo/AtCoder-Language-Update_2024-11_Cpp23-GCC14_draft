@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-cd /tmp
+cd /tmp/
 
 mkdir -p ./boost/
 
