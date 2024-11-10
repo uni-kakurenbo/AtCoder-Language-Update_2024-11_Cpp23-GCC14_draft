@@ -8,6 +8,5 @@ DIR="$(dirname "$0")"
 
 "${DIR}/replacers/sub-installers.sh"
 "${DIR}/replacers/installer.sh"
+"${DIR}/replacers/builder.sh"
 "${DIR}/replacers/config.sh"
-
-cp ./src/compile.sh ./dist/compile.sh
