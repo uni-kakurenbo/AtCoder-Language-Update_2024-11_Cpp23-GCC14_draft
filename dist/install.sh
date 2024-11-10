@@ -2,6 +2,32 @@
 ########## AUTO-GENERATED ##########
 # Do not modify this file manually #
 ####################################
+
+# shellcheck disable=all
+COMPILE_OPTIONS=(
+    "-std=gnu++23"
+
+    -DONLINE_JUDGE
+    -DATCODER
+
+    -O2
+
+    "-mtune=native"
+    "-march=native"
+
+    -Wall
+    -Wextra
+
+    "-fconstexpr-depth=2147483647"
+    "-fconstexpr-loop-limit=2147483647"
+    "-fconstexpr-ops-limit=2147483647"
+
+    -I/opt/ac-library/
+    -I/opt/boost/include/ -L/opt/boost/lib/
+    -I/usr/include/eigen3/
+    -lgmpxx -lgmp
+)
+
 # shellcheck disable=all
 if [[ -v ATCODER ]]; then
     PARALLEL=1
@@ -47,7 +73,6 @@ sudo ./bootstrap.sh --with-toolset=gcc --without-libraries=mpi,graph_parallel
 
 BUILD_ARGS=(-d0 "-j$(nproc)" "toolset=gcc" "threading=single" "variant=release" "link=static" "runtime-link=static" "cxxflags=\"-std=gnu++23\"")
 sudo ./b2 "${BUILD_ARGS[@]}" stage
-
 sudo ./b2 "${BUILD_ARGS[@]}" --prefix=/opt/boost/ install
 
 # Eigen
