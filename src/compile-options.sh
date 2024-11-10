@@ -1,8 +1,3 @@
-#!/bin/bash
-########## AUTO-GENERATED ##########
-# Do not modify this file manually #
-####################################
-
 # shellcheck disable=all
 COMPILE_OPTIONS=(
     "-std=gnu++23"
@@ -27,7 +22,3 @@ COMPILE_OPTIONS=(
     -I/usr/include/eigen3/
     -lgmpxx -lgmp
 )
-
-set -eu
-
-g++-14 ./Main.cpp -o a.out "${COMPILE_OPTIONS[@]}"
