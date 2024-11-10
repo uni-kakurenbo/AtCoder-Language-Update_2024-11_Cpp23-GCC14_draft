@@ -12,7 +12,7 @@ cd ./abseil/
 
 mkdir -p ./build/ && cd ./build/
 
-BUILD_ARGS=("-DABSL_PROPAGATE_CXX_STD=ON" "-DCMAKE_INSTALL_PREFIX:PATH=/opt/unordered_dense/")
+BUILD_ARGS=("-DABSL_PROPAGATE_CXX_STD=ON" "-DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/")
 
 echo "Paralell: ${PARALLEL}"
 
