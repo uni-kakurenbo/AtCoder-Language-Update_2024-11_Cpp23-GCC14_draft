@@ -6,7 +6,7 @@ VERSION="1.86.0"
 
 set -eu
 
-cd /tmp
+cd /tmp/
 
 mkdir -p ./boost/
 
