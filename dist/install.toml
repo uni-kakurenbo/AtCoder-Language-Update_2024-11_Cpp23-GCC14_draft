@@ -115,6 +115,7 @@ compile = '''
 set -eu
 
 g++-14 ./Main.cpp -o a.out "${COMPILE_OPTIONS[@]}"
+
 '''  # auto-replaced
 
 execution = ['./a.out']

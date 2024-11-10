@@ -2,8 +2,6 @@
 COMPILE_OPTIONS=(
     "-std=gnu++23"
 
-    -fmodules-ts
-
     -DONLINE_JUDGE
     -DATCODER
 

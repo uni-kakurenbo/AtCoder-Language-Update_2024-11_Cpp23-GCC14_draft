@@ -30,6 +30,7 @@ COMPILE_OPTIONS=(
     -lgmpxx -lgmp
 )
 
+
 # shellcheck disable=all
 if [[ -v ATCODER ]]; then
     PARALLEL=1
