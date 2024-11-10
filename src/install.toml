@@ -2,7 +2,7 @@ language = 'C++23'
 
 
 name = 'GCC'
-version = '14.2.0'
+version = '14.2.0-4ubuntu2~24.04'
 
 
 filename = 'Main.cpp'
