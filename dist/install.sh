@@ -47,25 +47,27 @@ sudo apt-get install -y build-essential
 sudo apt-get install pigz
 sudo apt-get install pbzip2
 
-cd /tmp
-
 # AC-Library
 VERSION="1.5.1"
 
 set -ue
 
-sudo wget "https://github.com/atcoder/ac-library/releases/download/v${VERSION}/ac-library.zip" -O ac-library.zip
-sudo unzip /tmp/ac-library.zip -d /opt/ac-library/
+cd /tmp
+
+sudo wget -q "https://github.com/atcoder/ac-library/releases/download/v${VERSION}/ac-library.zip" -O ./ac-library.zip
+sudo unzip -q ./ac-library.zip -d /opt/ac-library/
 
 # Boost
 VERSION="1.86.0"
 
 set -eu
 
+cd /tmp
+
 mkdir -p ./boost/
 
-sudo wget -q "https://archives.boost.io/release/${VERSION}/source/boost_${VERSION//./_}.tar.bz2" -O boost.tar.bz2
-sudo tar -I pbzip2 -xf boost.tar.bz2 -C ./boost/ --strip-components 1
+sudo wget -q "https://archives.boost.io/release/${VERSION}/source/boost_${VERSION//./_}.tar.bz2" -O ./boost.tar.bz2
+sudo tar -I pbzip2 -xf ./boost.tar.bz2 -C ./boost/ --strip-components 1
 
 cd ./boost/
 
