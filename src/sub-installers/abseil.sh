@@ -19,9 +19,9 @@ echo "Paralell: ${PARALLEL}"
 if [[ -v GIHUB_ACTIONS ]]; then
     sudo cmake "${BUILD_ARGS[@]}" ../
 else
-    cmake -DABSL_BUILD_TESTING=ON -DABSL_USE_GOOGLETEST_HEAD=ON "${BUILD_ARGS[@]}" ../
+    sudo cmake -DABSL_BUILD_TESTING=ON -DABSL_USE_GOOGLETEST_HEAD=ON "${BUILD_ARGS[@]}" ../
 
-    make "-j${PARALLEL}"
+    sudo make "-j${PARALLEL}"
     ctest --parallel "${PARALLEL}"
 fi
 
