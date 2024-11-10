@@ -11,6 +11,7 @@ sudo apt-get install pbzip2
 
 cd /tmp
 
+./sub-installers/abseil.sh
 ./sub-installers/AC-Library.sh
 ./sub-installers/Boost.sh
 ./sub-installers/Eigen.sh

@@ -22,6 +22,12 @@ execution = ['./a.out']
     url = 'https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Copying.html'
 
 
+[library.abseil]
+    version = '20240722.0'
+    license = [
+        { name = 'Apache 2.0', url = 'https://github.com/abseil/abseil-cpp/blob/master/LICENSE' },
+    ]
+
 [library.AC-Library]
     version = '1.5.1'
     license = [
