@@ -9,7 +9,8 @@ cat ./assets/warning.txt >>./dist/install.sh
 REMOVABLE_HEADER="$(cat ./dist/install.sh)"
 
 VERSION="$(dasel -r toml -w json <./src/install.toml | jq '.version')"
-echo "VERSION=${VERSION}" >>./dist/install.sh
+cat ./assets/parallel.sh >>./dist/install.sh
+echo -e "\nVERSION=${VERSION}" >>./dist/install.sh
 
 INSTALLER="$(cat ./src/install.sh)"
 echo -e "${INSTALLER//${SHEBANG}/}" >>./dist/install.sh
