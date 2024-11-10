@@ -5,6 +5,14 @@ on:
     pull_request:
     workflow_dispatch:
 
+concurrency:
+    group: |
+        update-${{
+            startsWith(github.ref_name, 'test') && github.ref_name ||
+            github.run_id
+        }}
+    cancel-in-progress: true
+
 jobs:
     run:
         runs-on: ${{ vars.RUNNER_IMAGE }}
