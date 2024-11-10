@@ -17,6 +17,7 @@ function run-test() {
     cp "$1" "${directory}/Main.cpp"
 
     cd "${directory}/"
+    chmod +x ./compile.sh
     ./compile.sh
 
     {
@@ -34,7 +35,7 @@ function run-test() {
 export -f run-test
 
 find ./ -type f -name '*.test.cpp' |
-    xargs -P0 -I {} bash -c 'run-test {}'
+    xargs "-P$(nproc)" -I {} bash -c 'run-test {}'
 
 cd ..
 rm -rf ./tmp/

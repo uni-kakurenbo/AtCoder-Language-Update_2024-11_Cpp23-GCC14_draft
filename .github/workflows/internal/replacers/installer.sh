@@ -3,14 +3,21 @@ set -eu
 
 SHEBANG='#!/bin/bash'
 
-echo "${SHEBANG}" >./dist/install.sh
-cat ./assets/warning.txt >>./dist/install.sh
+{
+    echo "${SHEBANG}"
+    cat ./assets/warning.txt
+} >./dist/install.sh
 
 REMOVABLE_HEADER="$(cat ./dist/install.sh)"
 
 VERSION="$(dasel -r toml -w json <./src/install.toml | jq '.version')"
-cat ./assets/parallel.sh >>./dist/install.sh
-echo -e "\nVERSION=${VERSION}" >>./dist/install.sh
+{
+    echo
+    cat ./src/compile-options.sh
+    echo
+    cat ./assets/parallel.sh
+    echo -e "\nVERSION=${VERSION}"
+} >>./dist/install.sh
 
 INSTALLER="$(cat ./src/install.sh)"
 echo -e "${INSTALLER//${SHEBANG}/}" >>./dist/install.sh
