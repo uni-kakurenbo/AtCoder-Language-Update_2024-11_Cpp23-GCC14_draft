@@ -1,8 +1,13 @@
 #!/bin/bash
-set -eu
+########## AUTO-GENERATED ##########
+# Do not modify this file manually #
+####################################
 
-ARGS=(
+# shellcheck disable=all
+COMPILE_OPTIONS=(
     "-std=gnu++23"
+
+    -fmodules-ts
 
     -DONLINE_JUDGE
     -DATCODER
@@ -25,4 +30,6 @@ ARGS=(
     -lgmpxx -lgmp
 )
 
-g++-14 ./Main.cpp -o a.out "${ARGS[@]}"
+set -eu
+
+g++-14 ./Main.cpp -o a.out "${COMPILE_OPTIONS[@]}"
