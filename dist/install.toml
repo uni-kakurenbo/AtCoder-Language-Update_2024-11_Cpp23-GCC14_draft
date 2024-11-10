@@ -67,7 +67,7 @@ sudo apt-get install pbzip2
 # AC-Library
 VERSION="1.5.1"
 
-set -ue
+set -eu
 
 cd /tmp
 
