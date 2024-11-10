@@ -7,8 +7,6 @@
 COMPILE_OPTIONS=(
     "-std=gnu++23"
 
-    -fmodules-ts
-
     -DONLINE_JUDGE
     -DATCODER
 
@@ -29,7 +27,6 @@ COMPILE_OPTIONS=(
     -I/usr/include/eigen3/
     -lgmpxx -lgmp
 )
-
 
 # shellcheck disable=all
 if [[ -v ATCODER ]]; then
@@ -76,7 +73,6 @@ sudo ./bootstrap.sh --with-toolset=gcc --without-libraries=mpi,graph_parallel
 
 BUILD_ARGS=(-d0 "-j$(nproc)" "toolset=gcc" "threading=single" "variant=release" "link=static" "runtime-link=static" "cxxflags=\"-std=gnu++23\"")
 sudo ./b2 "${BUILD_ARGS[@]}" stage
-
 sudo ./b2 "${BUILD_ARGS[@]}" --prefix=/opt/boost/ install
 
 # Eigen
