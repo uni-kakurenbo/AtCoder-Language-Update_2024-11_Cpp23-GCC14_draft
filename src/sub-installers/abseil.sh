@@ -22,7 +22,7 @@ else
     sudo cmake -DABSL_BUILD_TESTING=ON -DABSL_USE_GOOGLETEST_HEAD=ON "${BUILD_ARGS[@]}" ../
 
     sudo make "-j${PARALLEL}"
-    ctest --parallel "${PARALLEL}"
+    sudo ctest --parallel "${PARALLEL}"
 fi
 
 sudo cmake --build ./ --target install --parallel "${PARALLEL}"
