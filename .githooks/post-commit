@@ -1,0 +1,20 @@
+#! /bin/bash
+set -eu
+
+REF="$(git branch --show-current)"
+
+if [ -n "${REF}" ]; then
+    SOURCE_BRANCH="$(basename "${REF}")"
+    TEST_BRANCH="test/${SOURCE_BRANCH}"
+
+    (
+        git switch "${TEST_BRANCH}" || exit 1
+
+        git pull origin "${TEST_BRANCH}"
+        git merge -X theirs --no-verify "${SOURCE_BRANCH}"
+    ) || git switch -c "${TEST_BRANCH}"
+
+    git push --no-verify
+
+    git switch "${SOURCE_BRANCH}"
+fi

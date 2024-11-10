@@ -1,0 +1,16 @@
+#! /bin/bash
+set -eu
+
+while read -r local_ref __local_sha1 remote_ref __remote_sha1; do
+    SOURCE_BRANCH="$(basename "${local_ref}")"
+    TEST_BRANCH="test/$(basename "${remote_ref}")"
+
+    git switch "${TEST_BRANCH}" || exit 1
+
+    git pull origin "${TEST_BRANCH}"
+    git merge -X theirs --no-verify "${SOURCE_BRANCH}"
+
+    git push --no-verify
+
+    git switch "${SOURCE_BRANCH}"
+done
