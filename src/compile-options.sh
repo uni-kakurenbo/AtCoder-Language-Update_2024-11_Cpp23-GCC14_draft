@@ -5,6 +5,8 @@ COMPILE_OPTIONS=(
     -DONLINE_JUDGE
     -DATCODER
 
+    -flto
+
     -O2
 
     "-mtune=native"
