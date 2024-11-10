@@ -20,9 +20,13 @@ function run-test() {
     ./compile.sh
 
     {
-        echo "==== ${name} ===="
+        local header="================ ${name} ================"
+        echo
+        echo "${header}"
         ./a.out
-        echo "============"
+        echo "${header//[^=]/=}"
+        echo
+        echo
     } >./log.txt
     cat ./log.txt
 }
