@@ -5,15 +5,10 @@ on:
     push:
         branches:
             - main
-            - test/**
     workflow_dispatch:
 
 concurrency:
-    group: |
-        expand-${{
-            startsWith(github.ref_name, 'test') && github.ref_name ||
-            format('test/{0}', github.head_ref || github.ref_name)
-        }}
+    group: expand-${{ github.ref_name }}
     cancel-in-progress: true
 
 jobs:
