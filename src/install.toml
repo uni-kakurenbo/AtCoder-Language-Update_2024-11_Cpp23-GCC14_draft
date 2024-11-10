@@ -46,3 +46,9 @@ execution = ['./a.out']
         { name = 'GNU LGPL v3', url = 'https://www.gnu.org/licenses/lgpl-3.0.html' },
         { name = 'GNU GPL v2', url = 'https://www.gnu.org/licenses/old-licenses/gpl-2.0.html' }
     ]
+
+[library.libtorch]
+    version = '2.5.1'
+    license = [
+        { name = '3-Clause BSD', url = 'https://github.com/pytorch/pytorch/tree/main?tab=License-1-ov-file' },
+    ]

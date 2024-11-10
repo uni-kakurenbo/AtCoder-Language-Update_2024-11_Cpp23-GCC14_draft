@@ -21,4 +21,8 @@ COMPILE_OPTIONS=(
     -I/opt/boost/include/ -L/opt/boost/lib/
     -I/usr/include/eigen3/
     -lgmpxx -lgmp
+
+    "-D_GLIBCXX_USE_CXX11_ABI=0"
+    -I/opt/libtorch/include/ -I/opt/libtorch/include/torch/csrc/api/include/ -L/opt/libtorch/lib/
+    -Wl,-R/opt/libtorch/lib/ -ltorch -ltorch_cpu -lc10
 )
