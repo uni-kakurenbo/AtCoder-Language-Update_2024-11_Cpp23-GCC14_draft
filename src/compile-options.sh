@@ -5,6 +5,7 @@ COMPILE_OPTIONS=(
     -DONLINE_JUDGE
     -DATCODER
 
+    -flto
     -fcoroutines
 
     -O2
