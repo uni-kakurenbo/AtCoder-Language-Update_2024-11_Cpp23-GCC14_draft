@@ -27,5 +27,5 @@ function replace() {
 
 export -f replace
 
-time find ./src/sub-installers/ -type f -name '*.sh' -print0 |
+find ./src/sub-installers/ -type f -name '*.sh' -print0 |
     xargs -0 -I {} bash -c "replace {} \"${SHEBANG}\""

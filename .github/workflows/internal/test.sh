@@ -33,7 +33,7 @@ function run-test() {
 
 export -f run-test
 
-time find ./ -type f -name '*.test.cpp' |
+find ./ -type f -name '*.test.cpp' |
     xargs -P0 -I {} bash -c 'run-test {}'
 
 cd ..
