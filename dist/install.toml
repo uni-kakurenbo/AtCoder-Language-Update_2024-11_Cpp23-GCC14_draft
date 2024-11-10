@@ -6,7 +6,7 @@ language = 'C++23'
 
 
 name = 'GCC'
-version = '14.2.0'
+version = '4.2.0'
 
 
 filename = 'Main.cpp'
@@ -63,20 +63,11 @@ set -eu
 sudo apt-get install -y "libeigen3-dev=${VERSION}"
 
 # GMP
-VERSION="6.3.0"
+VERSION="2:6.3.0+dfsg-2ubuntu6"
 
 set -eu
 
-mkdir -p ./gmp/
-
-sudo wget "https://ftp.gnu.org/gnu/gmp/gmp-${VERSION}.tar.xz" -O gmp.tar.xz
-sudo tar -Jvxf gmp.tar.xz -C ./gmp/ --strip-components 1
-
-cd ./gmp/
-
-sudo ./configure --enable-cxx --prefix=/opt
-sudo make all
-sudo make install
+sudo apt-get install -y "libgmp3-dev=${VERSION}"
 '''  # auto-replaced
 
 compile = '''
@@ -131,7 +122,7 @@ execution = ['./a.out']
     ]
 
 [library.Eigen]
-    version = '3.4.0-4'
+    version = '3.4.0'
     license = [
         { name = 'MPL 2.0', url = 'https://www.mozilla.org/en-US/MPL/2.0/' },
     ]
