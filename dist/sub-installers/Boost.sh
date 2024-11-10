@@ -9,7 +9,7 @@ set -eu
 mkdir -p ./boost/
 
 sudo wget "https://archives.boost.io/release/${VERSION}/source/boost_${VERSION//./_}.tar.bz2" -O boost.tar.bz2
-sudo tar -vxf -I pbzip2 boost.tar.bz2 -C ./boost/ --strip-components 1
+sudo tar -I pbzip2 -vxf boost.tar.bz2 -C ./boost/ --strip-components 1
 
 cd ./boost/
 
