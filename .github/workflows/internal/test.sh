@@ -23,7 +23,6 @@ function run-test() {
         local header="================ ${name} ================"
         echo "${header}"
         ./compile.sh
-        echo
         echo "${header//[^\$]/-}"
         ./a.out
         echo "${header//[^=]/=}"
