@@ -3,8 +3,8 @@
 #include <string>
 
 signed main() {
-    const std::string msg = "Hello, World.";
+    const std::string msg = "Hello, world.";
 
-    ranges::for_each(msg, [](auto c) { print("{} ", c); });
+    ranges::for_each(msg, [](auto c) { std::print("{} ", c); });
     std::println();
 }
