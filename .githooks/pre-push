@@ -12,7 +12,7 @@ while read -r local_ref __local_sha1 remote_ref __remote_sha1; do
         git merge -X theirs --no-verify "${SOURCE_BRANCH}" || exit 1
     ) || git switch -c "${TEST_BRANCH}"
 
-    git push --no-verify
+    git push origin HEAD --no-verify
 
     git switch "${SOURCE_BRANCH}"
 done
