@@ -5,8 +5,9 @@ COMPILE_OPTIONS=(
     -DONLINE_JUDGE
     -DATCODER
 
-    -flto
     -fcoroutines
+
+    "-flto=auto"
 
     -O2
 
