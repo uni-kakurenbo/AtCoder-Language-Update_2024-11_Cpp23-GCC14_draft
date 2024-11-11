@@ -29,7 +29,7 @@ function run-test() {
         echo "${header//[^=]/=}"
         echo
         echo
-    } >./log.txt
+    } >&./log.txt
     cat ./log.txt
 }
 
