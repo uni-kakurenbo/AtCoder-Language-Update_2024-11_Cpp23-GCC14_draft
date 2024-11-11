@@ -24,7 +24,7 @@ function run-test() {
         echo "${header}"
         ./compile.sh
         echo
-        echo "${header//[^=]/=}"
+        echo "${header//[^\$]/-}"
         ./a.out
         echo "${header//[^=]/=}"
         echo
