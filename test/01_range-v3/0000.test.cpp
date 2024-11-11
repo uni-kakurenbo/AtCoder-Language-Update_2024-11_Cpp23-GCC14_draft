@@ -1,6 +1,6 @@
 #include <print>
 #include <string>
-#include <range/v3/all.hpp>
+#include <range/v3/algorithm/for_each.hpp>
 
 signed main() {
     const std::string msg = "Hello, world.";
