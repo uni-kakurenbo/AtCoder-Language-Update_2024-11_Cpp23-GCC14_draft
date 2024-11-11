@@ -14,7 +14,7 @@ if [ -n "${REF}" ]; then
         git merge -X theirs --no-verify "${SOURCE_BRANCH}"
     ) || git switch -c "${TEST_BRANCH}"
 
-    git push --no-verify
+    git push origin HEAD --no-verify
 
     git switch "${SOURCE_BRANCH}"
 fi
