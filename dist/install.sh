@@ -26,6 +26,7 @@ COMPILE_OPTIONS=(
     -I/opt/boost/include/ -L/opt/boost/lib/
     -I/usr/include/eigen3/
     -lgmpxx -lgmp
+    -I/opt/unordered_dense/include/ -L/opt/unordered_dense/lib/
 )
 
 # shellcheck disable=all
@@ -90,4 +91,20 @@ VERSION="2:6.3.0+dfsg-2ubuntu6"
 set -eu
 
 sudo apt-get install -y "libgmp3-dev=${VERSION}"
+
+# unordered_dense
+VERSION="4.4.0"
+
+set -eu
+
+mkdir -p ./unordered_dense/
+
+sudo wget "https://github.com/martinus/unordered_dense/archive/refs/tags/v${VERSION}.tar.gz" -O ./unordered_dense.tar.gz
+sudo tar -I pigz -xf ./unordered_dense.tar.gz -C ./unordered_dense/ --strip-components 1
+
+cd ./unordered_dense/
+
+mkdir -p ./build/ && cd ./build/
+sudo cmake "-DCMAKE_INSTALL_PREFIX:PATH=/opt/unordered_dense/" ../
+sudo cmake --build ./ --target install --parallel "${PARALLEL}"
 
