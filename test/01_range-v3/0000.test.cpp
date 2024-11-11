@@ -1,6 +1,6 @@
 #include <print>
-#include <range/v3/all.hpp>
 #include <string>
+#include <range/v3/all.hpp>
 
 signed main() {
     const std::string msg = "Hello, world.";
