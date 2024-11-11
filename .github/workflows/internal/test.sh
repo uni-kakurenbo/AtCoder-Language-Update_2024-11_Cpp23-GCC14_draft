@@ -20,14 +20,22 @@ function run-test() {
     chmod +x ./compile.sh
 
     {
+        set +e
         local header="================ ${name} ================"
+
         echo "${header}"
+
         ./compile.sh
+
         echo "${header//[^\$]/-}"
+
         ./a.out
+
         echo "${header//[^=]/=}"
         echo
         echo
+
+        set -e
     } >&./log.txt
     cat ./log.txt
 }
