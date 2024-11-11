@@ -6,7 +6,7 @@ language = 'C++23'
 
 
 name = 'GCC'
-version = '4.2.0'
+version = '14.2.0'
 
 
 filename = 'Main.cpp'
