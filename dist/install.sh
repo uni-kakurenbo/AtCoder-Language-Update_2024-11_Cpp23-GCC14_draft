@@ -10,6 +10,8 @@ COMPILE_OPTIONS=(
     -DONLINE_JUDGE
     -DATCODER
 
+    -flto
+
     -O2
 
     "-mtune=native"
@@ -22,6 +24,7 @@ COMPILE_OPTIONS=(
     "-fconstexpr-loop-limit=2147483647"
     "-fconstexpr-ops-limit=2147483647"
 
+    -I/opt/abseil/include/ -L/opt/abseil/lib/
     -I/opt/ac-library/
     -I/opt/boost/include/ -L/opt/boost/lib/
     -I/usr/include/eigen3/
@@ -47,6 +50,35 @@ sudo apt-get install -y "g++-14=${VERSION}"
 sudo apt-get install -y build-essential
 sudo apt-get install pigz
 sudo apt-get install pbzip2
+
+# abseil
+VERSION="20240722.0"
+
+set -eu
+
+cd /tmp/
+
+mkdir -p ./abseil/
+
+sudo wget -q "https://github.com/abseil/abseil-cpp/releases/download/${VERSION}/abseil-cpp-${VERSION}.tar.gz" -O ./abseil.tar.gz
+sudo tar -I pigz -xf ./abseil.tar.gz -C ./abseil/ --strip-components 1
+
+cd ./abseil/
+
+mkdir -p ./build/ && cd ./build/
+
+BUILD_ARGS=("-DABSL_PROPAGATE_CXX_STD=ON" "-DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/")
+
+if [[ -v GITHUB_ACTIONS ]]; then
+    sudo cmake "${BUILD_ARGS[@]}" ../
+else
+    sudo cmake -DABSL_BUILD_TESTING=ON -DABSL_USE_GOOGLETEST_HEAD=ON "${BUILD_ARGS[@]}" ../
+
+    sudo make "-j${PARALLEL}"
+    sudo ctest --parallel "${PARALLEL}"
+fi
+
+sudo cmake --build ./ --target install --parallel "${PARALLEL}"
 
 # AC-Library
 VERSION="1.5.1"
