@@ -18,12 +18,13 @@ function run-test() {
 
     cd "${directory}/"
     chmod +x ./compile.sh
-    ./compile.sh
 
     {
         local header="================ ${name} ================"
-        echo
         echo "${header}"
+        ./compile.sh
+        echo
+        echo "${header//[^=]/=}"
         ./a.out
         echo "${header//[^=]/=}"
         echo
