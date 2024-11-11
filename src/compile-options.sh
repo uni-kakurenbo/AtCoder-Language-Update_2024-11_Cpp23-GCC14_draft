@@ -6,6 +6,7 @@ COMPILE_OPTIONS=(
     -DATCODER
 
     -flto
+    -fcoroutines
 
     -O2
 
