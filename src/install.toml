@@ -9,11 +9,6 @@ filename = 'Main.cpp'
 
 object = 'a.out'
 
-
-install = '''${{ref:installer}}'''  # auto-replaced
-
-compile = '''${{ref:builder}}'''  # auto-replaced
-
 execution = ['./a.out']
 
 
