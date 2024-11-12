@@ -6,6 +6,8 @@ VERSION="4.4.0"
 
 set -eu
 
+cd /tmp/
+
 mkdir -p ./unordered_dense/
 
 sudo wget "https://github.com/martinus/unordered_dense/archive/refs/tags/v${VERSION}.tar.gz" -O ./unordered_dense.tar.gz
