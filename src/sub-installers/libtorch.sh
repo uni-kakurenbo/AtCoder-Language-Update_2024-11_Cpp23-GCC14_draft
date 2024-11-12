@@ -3,7 +3,7 @@ set -eu
 
 cd /tmp/
 
-sudo wget -q "https://download.pytorch.org/libtorch/cpu/libtorch-shared-with-deps-${VERSION}%2Bcpu.zip" -O ./libtorch.zip
+sudo wget -q "https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-${VERSION}%2Bcpu.zip" -O ./libtorch.zip
 sudo unzip -oq ./libtorch.zip -d ./
 
 sudo mkdir -p /opt/libtorch/include/libtorch/
