@@ -10,7 +10,5 @@ std::generator<T> iota(T end) {
 }
 
 signed main() {
-    auto g = iota<int>(10);
-
-    for(auto v : g) std::println("{}", v);
+    for(auto v : iota<int>(10)) std::println("{}", v);
 }
