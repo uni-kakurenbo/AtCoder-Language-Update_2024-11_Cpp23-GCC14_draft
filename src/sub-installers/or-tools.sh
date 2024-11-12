@@ -1,8 +1,6 @@
 #!/bin/bash
 set -eu
 
-VERSION="9.11"
-
 cd /tmp/
 
 mkdir -p ./or-tools/
@@ -12,8 +10,9 @@ sudo tar -I pigz -xf ./or-tools.tar.gz -C ./or-tools/ --strip-components 1
 
 cd ./or-tools/
 
-sudo cmake -S . -B build -DCMAKE_INSTALL_PREFIX:PATH=/opt/or-tools/
-sudo cmake --build build --config Release --target install -j -v
-sudo cmake --build build --config Release --target test -v
+sudo cmake -S . -B build -DBUILD_DEPS=ON -DCMAKE_INSTALL_PREFIX:PATH=/opt/or-tools/
+sudo cmake --build build --config Release --target install -v --parallel "${PARALLEL}"
 
-ls /opt/or-tools/
+if [[ ! -v GITHUB_ACTIONS ]]; then
+    sudo cmake --build build --config Release --target test -v --parallel "${PARALLEL}"
+fi

@@ -53,3 +53,9 @@ execution = ['./a.out']
     license = [
         { name = 'MIT', url = 'https://github.com/martinus/unordered_dense/blob/main/LICENSE' },
     ]
+
+[library.or-tools]
+    version = '9.11'
+    license = [
+        { name = 'Apache 2.0', url = 'https://github.com/google/or-tools/blob/stable/LICENSE' },
+    ]

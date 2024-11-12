@@ -29,4 +29,7 @@ COMPILE_OPTIONS=(
     -I/usr/include/eigen3/
     -lgmpxx -lgmp
     -I/opt/unordered_dense/include/ -L/opt/unordered_dense/lib/
+
+    -I/opt/or-tools/include/ -L/opt/or-tools/lib/
+    -Wl,-R/opt/or-tools/lib/ -lortools -lprotobuf
 )
