@@ -51,9 +51,7 @@ set -eu
 sudo apt-get install -y "g++-14=${VERSION}"
 
 ### Libraries
-sudo apt-get install -y build-essential
-sudo apt-get install pigz
-sudo apt-get install pbzip2
+sudo apt-get install -y build-essential pigz pbzip2
 
 # abseil
 VERSION="20240722.0"
@@ -143,4 +141,7 @@ cd ./unordered_dense/
 mkdir -p ./build/ && cd ./build/
 sudo cmake "-DCMAKE_INSTALL_PREFIX:PATH=/opt/unordered_dense/" ../
 sudo cmake --build ./ --target install --parallel "${PARALLEL}"
+
+
+sudo apt-get remove -y --auto-remove build-essential pigz pbzip2
 
