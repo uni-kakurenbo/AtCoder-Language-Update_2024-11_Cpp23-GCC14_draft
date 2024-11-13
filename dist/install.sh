@@ -48,14 +48,12 @@ else
 fi
 
 VERSION="14.2.0-4ubuntu2~24.04"
-
 set -eu
 
-### GCC
 sudo apt-get install -y "g++-14=${VERSION}"
 
-### Libraries
 sudo apt-get install -y build-essential pigz pbzip2
+
 
 # abseil
 VERSION="20240722.0"
@@ -86,6 +84,7 @@ fi
 
 sudo cmake --build ./ --target install --parallel "${PARALLEL}"
 
+
 # AC-Library
 VERSION="1.5.1"
 
@@ -95,6 +94,7 @@ cd /tmp/
 
 sudo wget -q "https://github.com/atcoder/ac-library/releases/download/v${VERSION}/ac-library.zip" -O ./ac-library.zip
 sudo unzip -oq ./ac-library.zip -d /opt/ac-library/
+
 
 # Boost
 VERSION="1.86.0"
@@ -116,6 +116,7 @@ BUILD_ARGS=(-d0 "-j$(nproc)" "toolset=gcc" "threading=single" "variant=release" 
 sudo ./b2 "${BUILD_ARGS[@]}" stage
 sudo ./b2 "${BUILD_ARGS[@]}" --prefix=/opt/boost/ install
 
+
 # Eigen
 VERSION="3.4.0-4"
 
@@ -123,12 +124,14 @@ set -eu
 
 sudo apt-get install -y "libeigen3-dev=${VERSION}"
 
+
 # GMP
 VERSION="2:6.3.0+dfsg-2ubuntu6"
 
 set -eu
 
 sudo apt-get install -y "libgmp3-dev=${VERSION}"
+
 
 # libtorch
 VERSION="2.5.1"
@@ -146,6 +149,7 @@ sudo mkdir -p /opt/libtorch/lib/libtorch/
 sudo cp -Trf ./libtorch/include/ /opt/libtorch/include/
 sudo cp -Trf ./libtorch/lib/ /opt/libtorch/lib/
 
+
 # range-v3
 VERSION="0.12.0"
 
@@ -161,6 +165,7 @@ sudo tar -I pigz -xf ./range-v3.tar.gz -C ./range-v3/ --strip-components 1
 sudo mkdir -p /opt/range-v3/include/
 
 cp -Trf ./range-v3/include/ /opt/range-v3/include/
+
 
 # unordered_dense
 VERSION="4.4.0"
