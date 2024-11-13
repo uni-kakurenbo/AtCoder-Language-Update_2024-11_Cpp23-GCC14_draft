@@ -33,6 +33,7 @@ COMPILE_OPTIONS=(
     -I/opt/boost/include/ -L/opt/boost/lib/
     -I/usr/include/eigen3/
     -lgmpxx -lgmp
+    -I/opt/range-v3/include/
     -I/opt/unordered_dense/include/ -L/opt/unordered_dense/lib/
 
     -I/opt/libtorch/include/ -I/opt/libtorch/include/torch/csrc/api/include/ -L/opt/libtorch/lib/
@@ -144,6 +145,22 @@ sudo mkdir -p /opt/libtorch/lib/libtorch/
 
 sudo cp -Trf ./libtorch/include/ /opt/libtorch/include/
 sudo cp -Trf ./libtorch/lib/ /opt/libtorch/lib/
+
+# range-v3
+VERSION="0.12.0"
+
+set -eu
+
+cd /tmp/
+
+mkdir -p ./range-v3/
+
+sudo wget -q "https://github.com/ericniebler/range-v3/archive/refs/tags/${VERSION}.tar.gz" -O ./range-v3.tar.gz
+sudo tar -I pigz -xf ./range-v3.tar.gz -C ./range-v3/ --strip-components 1
+
+sudo mkdir -p /opt/range-v3/include/
+
+cp -Trf ./range-v3/include/ /opt/range-v3/include/
 
 # unordered_dense
 VERSION="4.4.0"
