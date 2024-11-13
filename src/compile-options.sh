@@ -7,6 +7,7 @@ COMPILE_OPTIONS=(
 
     -fcoroutines
 
+    -fopenmp
     "-flto=auto"
 
     -O2
