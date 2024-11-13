@@ -9,6 +9,11 @@ filename = 'Main.cpp'
 
 object = 'a.out'
 
+
+install = '''${{ref:installer}}'''  # auto-replaced
+
+compile = '''${{ref:builder}}'''  # auto-replaced
+
 execution = ['./a.out']
 
 
@@ -16,12 +21,6 @@ execution = ['./a.out']
     name = 'GNU GPL v3'
     url = 'https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Copying.html'
 
-
-[library.abseil]
-    version = '20240722.0'
-    license = [
-        { name = 'Apache 2.0', url = 'https://github.com/abseil/abseil-cpp/blob/master/LICENSE' },
-    ]
 
 [library.AC-Library]
     version = '1.5.1'
@@ -86,9 +85,3 @@ execution = ['./a.out']
 [[library.libtorch.license]]
     name = '3-Clause BSD'
     url = 'https://github.com/pytorch/pytorch/blob/main/NOTICE#L458-L490'
-
-[library.unordered_dense]
-    version = '4.4.0'
-    license = [
-        { name = 'MIT', url = 'https://github.com/martinus/unordered_dense/blob/main/LICENSE' },
-    ]

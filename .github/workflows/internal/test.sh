@@ -18,25 +18,17 @@ function run-test() {
 
     cd "${directory}/"
     chmod +x ./compile.sh
+    ./compile.sh
 
     {
-        set +e
         local header="================ ${name} ================"
-
+        echo
         echo "${header}"
-
-        ./compile.sh
-
-        echo "${header//[^\$]/-}"
-
         ./a.out
-
         echo "${header//[^=]/=}"
         echo
         echo
-
-        set -e
-    } >&./log.txt
+    } >./log.txt
     cat ./log.txt
 }
 
@@ -45,4 +37,5 @@ export -f run-test
 find ./ -type f -name '*.test.cpp' -print0 |
     xargs -0 "-P$(nproc)" -I {} bash -c 'run-test {}'
 
-sudo rm -rf ./tmp/
+cd ..
+rm -rf ./tmp/

@@ -39,7 +39,7 @@ jobs:
                   git add -f ./dist/
 
                   if (git diff --cached --shortstat | grep '[0-9]'); then
-                    git commit -m "[workflow] expand templates ${GITHUB_SHA}"
+                    git commit -m "[workflow] expand install.toml template ${GITHUB_SHA}"
 
                     REPOSITORY_NAME="${{ github.head_ref || github.ref_name }}"
 
