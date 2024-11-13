@@ -3,6 +3,7 @@ run-name: ${{ github.workflow }} (${{ github.ref_name }})
 on:
     push:
         branches:
+            - main
             - test/**
     pull_request:
     workflow_dispatch:
@@ -25,7 +26,7 @@ jobs:
                   ref: ${{ github.head_ref || github.ref_name }}
                   fetch-depth: 0
 
-            - name: ccache
+            - name: Use ccache
               uses: hendrikmuhs/ccache-action@v1.2
               with:
                   create-symlink: true
