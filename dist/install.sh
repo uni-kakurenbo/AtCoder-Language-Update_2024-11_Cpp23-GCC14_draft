@@ -10,6 +10,10 @@ COMPILE_OPTIONS=(
     -DONLINE_JUDGE
     -DATCODER
 
+    -fcoroutines
+
+    "-flto=auto"
+
     -O2
 
     "-mtune=native"
@@ -22,10 +26,14 @@ COMPILE_OPTIONS=(
     "-fconstexpr-loop-limit=2147483647"
     "-fconstexpr-ops-limit=2147483647"
 
+    -lstdc++exp
+
+    -I/opt/abseil/include/ -L/opt/abseil/lib/
     -I/opt/ac-library/
     -I/opt/boost/include/ -L/opt/boost/lib/
     -I/usr/include/eigen3/
     -lgmpxx -lgmp
+    -I/opt/unordered_dense/include/ -L/opt/unordered_dense/lib/
 )
 
 # shellcheck disable=all
@@ -43,9 +51,36 @@ set -eu
 sudo apt-get install -y "g++-14=${VERSION}"
 
 ### Libraries
-sudo apt-get install -y build-essential
-sudo apt-get install pigz
-sudo apt-get install pbzip2
+sudo apt-get install -y build-essential pigz pbzip2
+
+# abseil
+VERSION="20240722.0"
+
+set -eu
+
+cd /tmp/
+
+mkdir -p ./abseil/
+
+sudo wget -q "https://github.com/abseil/abseil-cpp/releases/download/${VERSION}/abseil-cpp-${VERSION}.tar.gz" -O ./abseil.tar.gz
+sudo tar -I pigz -xf ./abseil.tar.gz -C ./abseil/ --strip-components 1
+
+cd ./abseil/
+
+mkdir -p ./build/ && cd ./build/
+
+BUILD_ARGS=("-DABSL_PROPAGATE_CXX_STD=ON" "-DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/")
+
+if [[ -v GITHUB_ACTIONS ]]; then
+    sudo cmake "${BUILD_ARGS[@]}" ../
+else
+    sudo cmake -DABSL_BUILD_TESTING=ON -DABSL_USE_GOOGLETEST_HEAD=ON "${BUILD_ARGS[@]}" ../
+
+    sudo make "-j${PARALLEL}"
+    sudo ctest --parallel "${PARALLEL}"
+fi
+
+sudo cmake --build ./ --target install --parallel "${PARALLEL}"
 
 # AC-Library
 VERSION="1.5.1"
@@ -90,4 +125,25 @@ VERSION="2:6.3.0+dfsg-2ubuntu6"
 set -eu
 
 sudo apt-get install -y "libgmp3-dev=${VERSION}"
+
+# unordered_dense
+VERSION="4.4.0"
+
+set -eu
+
+cd /tmp/
+
+mkdir -p ./unordered_dense/
+
+sudo wget "https://github.com/martinus/unordered_dense/archive/refs/tags/v${VERSION}.tar.gz" -O ./unordered_dense.tar.gz
+sudo tar -I pigz -xf ./unordered_dense.tar.gz -C ./unordered_dense/ --strip-components 1
+
+cd ./unordered_dense/
+
+mkdir -p ./build/ && cd ./build/
+sudo cmake "-DCMAKE_INSTALL_PREFIX:PATH=/opt/unordered_dense/" ../
+sudo cmake --build ./ --target install --parallel "${PARALLEL}"
+
+
+sudo apt-get remove -y --auto-remove build-essential pigz pbzip2
 
