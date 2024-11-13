@@ -1,25 +1,30 @@
 #include <print>
 #include <stacktrace>
 
-void a() {
-  std::println("{}", std::stacktrace::current());
+auto a() __attribute__((noinline, noclone));
+auto b() __attribute__((noinline, noclone));
+auto c() __attribute__((noinline, noclone));
+auto d() __attribute__((noinline, noclone));
+
+auto a() {
+  return std::stacktrace::current();
 }
 
-void b() {
-  a();
+auto b() {
+    return a();
 }
 
-void c() {
-    b();
+auto c() {
+    return b();
 }
 
-void d() {
-    c();
+auto d() {
+    return c();
 }
 
 signed main() {
-    a();
-    b();
-    c();
-    d();
+    std::println("{}", a());
+    std::println("{}", b());
+    std::println("{}", c());
+    std::println("{}", d());
 }
