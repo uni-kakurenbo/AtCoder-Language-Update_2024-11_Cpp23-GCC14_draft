@@ -12,7 +12,13 @@ cd ./abseil/
 
 mkdir -p ./build/ && cd ./build/
 
-BUILD_ARGS=("-DABSL_PROPAGATE_CXX_STD=ON" "-DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/")
+BUILD_ARGS=(
+    "-DABSL_ENABLE_INSTALL:BOOL=ON"
+    "-DABSL_PROPAGATE_CXX_STD:BOOL=ON"
+    "-DCMAKE_CXX_FLAGS=-fPIC"
+    "-DCMAKE_CXX_STANDARD=23"
+    "-DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/"
+)
 
 if [[ -v GITHUB_ACTIONS ]]; then
     sudo cmake "${BUILD_ARGS[@]}" ../
