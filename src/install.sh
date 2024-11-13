@@ -12,6 +12,7 @@ sudo apt-get install -y build-essential pigz pbzip2
 ./sub-installers/Boost.sh
 ./sub-installers/Eigen.sh
 ./sub-installers/GMP.sh
+./sub-installers/libtorch.sh
 ./sub-installers/unordered_dense.sh
 
 sudo apt-get remove -y --auto-remove build-essential pigz pbzip2
