@@ -34,6 +34,9 @@ COMPILE_OPTIONS=(
     -I/usr/include/eigen3/
     -lgmpxx -lgmp
     -I/opt/unordered_dense/include/ -L/opt/unordered_dense/lib/
+
+    -I/opt/libtorch/include/ -I/opt/libtorch/include/torch/csrc/api/include/ -L/opt/libtorch/lib/
+    -Wl,-R/opt/libtorch/lib/ -ltorch -ltorch_cpu -lc10
 )
 
 # shellcheck disable=all
@@ -125,6 +128,22 @@ VERSION="2:6.3.0+dfsg-2ubuntu6"
 set -eu
 
 sudo apt-get install -y "libgmp3-dev=${VERSION}"
+
+# libtorch
+VERSION="2.5.1"
+
+set -eu
+
+cd /tmp/
+
+sudo wget -q "https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-${VERSION}%2Bcpu.zip" -O ./libtorch.zip
+sudo unzip -oq ./libtorch.zip -d ./
+
+sudo mkdir -p /opt/libtorch/include/libtorch/
+sudo mkdir -p /opt/libtorch/lib/libtorch/
+
+sudo cp -Trf ./libtorch/include/ /opt/libtorch/include/
+sudo cp -Trf ./libtorch/lib/ /opt/libtorch/lib/
 
 # unordered_dense
 VERSION="4.4.0"

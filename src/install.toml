@@ -48,6 +48,47 @@ execution = ['./a.out']
         { name = 'GNU GPL v2', url = 'https://www.gnu.org/licenses/old-licenses/gpl-2.0.html' }
     ]
 
+
+[library.libtorch]
+    version = '2.5.1'
+
+[[library.libtorch.license]]
+    name = '3-Clause BSD'
+    url = 'https://github.com/pytorch/pytorch/blob/main/LICENSE'
+
+[[library.libtorch.license]]
+    name = 'Earlier BSD'
+    url = 'https://github.com/pytorch/pytorch/blob/main/NOTICE#L8-L50'
+
+[[library.libtorch.license]]
+    name = '2-Clause BSD'
+    url = 'https://github.com/pytorch/pytorch/blob/main/NOTICE#L53-L103'
+
+[[library.libtorch.license]]
+    name = 'Apache License'
+    url = 'https://github.com/pytorch/pytorch/blob/main/NOTICE#L105-L285'
+
+[[library.libtorch.license]]
+    name = '3-Clause BSD'
+    url = 'https://github.com/pytorch/pytorch/blob/main/NOTICE#L287-L321'
+
+[[library.libtorch.license]]
+    name = '3-Clause BSD'
+    url = 'https://github.com/pytorch/pytorch/blob/main/NOTICE#L324-L360'
+
+[[library.libtorch.license]]
+    name = 'BSL 1.0'
+    url = 'https://github.com/pytorch/pytorch/blob/main/NOTICE#L362-L418'
+
+[[library.libtorch.license]]
+    name = 'PILLOW-SIMD Software License'
+    url = 'https://github.com/pytorch/pytorch/blob/main/NOTICE#L420-L456'
+
+[[library.libtorch.license]]
+    name = '3-Clause BSD'
+    url = 'https://github.com/pytorch/pytorch/blob/main/NOTICE#L458-L490'
+
+
 [library.range-v3]
     version = '0.12.0'
 
@@ -66,6 +107,7 @@ execution = ['./a.out']
 [[library.range-v3.license]]
     name = 'SGI C++ Standard Template Library license'
     url = 'https://github.com/ericniebler/range-v3/blob/0.12.0/LICENSE.txt#L127'
+
 
 [library.unordered_dense]
     version = '4.4.0'

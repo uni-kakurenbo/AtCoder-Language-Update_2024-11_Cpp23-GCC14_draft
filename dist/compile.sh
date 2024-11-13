@@ -34,6 +34,9 @@ COMPILE_OPTIONS=(
     -I/usr/include/eigen3/
     -lgmpxx -lgmp
     -I/opt/unordered_dense/include/ -L/opt/unordered_dense/lib/
+
+    -I/opt/libtorch/include/ -I/opt/libtorch/include/torch/csrc/api/include/ -L/opt/libtorch/lib/
+    -Wl,-R/opt/libtorch/lib/ -ltorch -ltorch_cpu -lc10
 )
 
 set -eu
