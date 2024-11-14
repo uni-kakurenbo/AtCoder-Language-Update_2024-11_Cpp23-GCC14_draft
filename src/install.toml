@@ -88,6 +88,10 @@ execution = ['./a.out']
     name = '3-Clause BSD'
     url = 'https://github.com/pytorch/pytorch/blob/main/NOTICE#L458-L490'
 
+[library.LightGBM]
+    version = '4.5.0'
+    license = { name = 'MIT', url = 'https://github.com/microsoft/LightGBM/blob/master/LICENSE' }
+
 
 [library.range-v3]
     version = '0.12.0'
