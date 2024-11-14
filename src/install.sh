@@ -1,8 +1,15 @@
 #!/bin/bash
 set -eu
 
+REQUIRED_PACKAGES=()
+
+function apt-install() {
+    sudo apt-get install "$1=$2"
+    REQUIRED_PACKAGES+=("$1")
+}
+
 ### GCC
-sudo apt-get install -y "g++-14=${VERSION}"
+apt-install g++-14 "${VERSION}"
 
 ### Libraries
 sudo apt-get install -y build-essential pigz pbzip2
@@ -16,4 +23,16 @@ sudo apt-get install -y build-essential pigz pbzip2
 ./sub-installers/range-v3.sh
 ./sub-installers/unordered_dense.sh
 
-sudo apt-get remove -y --auto-remove build-essential pigz pbzip2
+### Clean-up
+mapfile -t UNNECESSARY_PACKAGES < <(
+    dpkg --get-selections |
+        xargs apt-cache show {} |
+        awk -F ' *: *' '$1 == "Package" { p = $2; next } $1 == "Priority" && $2 ~ /(optional|extra)/ { print p }' |
+        grep -v -E "^($(
+            IFS='|'
+            echo "${REQUIRED_PACKAGES[*]}"
+        ))$"
+)
+
+echo "remove: ${UNNECESSARY_PACKAGES[*]}"
+sudo apt-get remove --auto-remove -y "${UNNECESSARY_PACKAGES[@]}"
