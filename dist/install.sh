@@ -72,13 +72,13 @@ BUILD_ARGS=(
     -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS[*]}"
 )
 
-if [[ -v GITHUB_ACTIONS ]]; then
-    sudo cmake "${BUILD_ARGS[@]}" ../
-else
+if [[ -v RUN_TEST ]]; then
     sudo cmake -DABSL_BUILD_TESTING=ON -DABSL_USE_GOOGLETEST_HEAD=ON "${BUILD_ARGS[@]}" ../
 
     sudo make "-j${PARALLEL}"
     sudo ctest --parallel "${PARALLEL}"
+else
+    sudo cmake "${BUILD_ARGS[@]}" ../
 fi
 
 sudo cmake --build ./ --target install --parallel "${PARALLEL}"
