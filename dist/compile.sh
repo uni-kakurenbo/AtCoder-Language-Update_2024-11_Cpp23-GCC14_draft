@@ -12,12 +12,9 @@ COMPILE_OPTIONS=(
 
     -fcoroutines
 
-    "-flto=auto"
-
     -O2
-
-    "-mtune=native"
     "-march=native"
+    "-flto=auto"
 
     -Wall
     -Wextra
