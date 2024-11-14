@@ -19,7 +19,9 @@ COMPILE_OPTIONS=(
     "-fconstexpr-ops-limit=2147483647"
 
     -lstdc++exp
+)
 
+LIBRARIES=(
     -I/opt/abseil/include/ -L/opt/abseil/lib/
     -I/opt/ac-library/
     -I/opt/boost/include/ -L/opt/boost/lib/
