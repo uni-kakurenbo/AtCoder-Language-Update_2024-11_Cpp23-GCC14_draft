@@ -18,7 +18,7 @@ BUILD_ARGS=(
     -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS[*]}"
 )
 
-if [[ -v GITHUB_ACTIONS ]]; then
+if [[ -v RUN_TEST ]]; then
     sudo cmake "${BUILD_ARGS[@]}" ../
 else
     sudo cmake -DABSL_BUILD_TESTING=ON -DABSL_USE_GOOGLETEST_HEAD=ON "${BUILD_ARGS[@]}" ../
