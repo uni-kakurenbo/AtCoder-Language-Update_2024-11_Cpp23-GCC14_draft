@@ -24,7 +24,9 @@ COMPILE_OPTIONS=(
     "-fconstexpr-ops-limit=2147483647"
 
     -lstdc++exp
+)
 
+LIBRARIES=(
     -I/opt/abseil/include/ -L/opt/abseil/lib/
     -I/opt/ac-library/
     -I/opt/boost/include/ -L/opt/boost/lib/
@@ -39,4 +41,4 @@ COMPILE_OPTIONS=(
 
 set -eu
 
-g++-14 ./Main.cpp -o a.out "${COMPILE_OPTIONS[@]}"
+g++-14 ./Main.cpp -o a.out "${COMPILE_OPTIONS[@]}" "${LIBRARIES[@]}"

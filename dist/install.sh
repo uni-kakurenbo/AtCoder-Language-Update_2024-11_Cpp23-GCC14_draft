@@ -24,7 +24,9 @@ COMPILE_OPTIONS=(
     "-fconstexpr-ops-limit=2147483647"
 
     -lstdc++exp
+)
 
+LIBRARIES=(
     -I/opt/abseil/include/ -L/opt/abseil/lib/
     -I/opt/ac-library/
     -I/opt/boost/include/ -L/opt/boost/lib/
@@ -38,11 +40,7 @@ COMPILE_OPTIONS=(
 )
 
 # shellcheck disable=all
-if [[ -v ATCODER ]]; then
-    PARALLEL=1
-else
-    PARALLEL="$(nproc)"
-fi
+PARALLEL="$(nproc)"
 
 VERSION="14.2.0-4ubuntu2~24.04"
 set -eu
@@ -68,7 +66,11 @@ cd ./abseil/
 
 mkdir -p ./build/ && cd ./build/
 
-BUILD_ARGS=("-DABSL_PROPAGATE_CXX_STD=ON" "-DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/")
+BUILD_ARGS=(
+    -DABSL_PROPAGATE_CXX_STD:BOOL=ON
+    -DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/
+    -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS[*]}"
+)
 
 if [[ -v GITHUB_ACTIONS ]]; then
     sudo cmake "${BUILD_ARGS[@]}" ../
@@ -109,7 +111,17 @@ cd ./boost/
 
 sudo ./bootstrap.sh --with-toolset=gcc --without-libraries=mpi,graph_parallel
 
-BUILD_ARGS=(-d0 "-j$(nproc)" "toolset=gcc" "threading=single" "variant=release" "link=static" "runtime-link=static" "cxxflags=\"-std=gnu++23\"")
+BUILD_ARGS=(
+    -d0
+    "-j$(nproc)"
+    "toolset=gcc"
+    "threading=single"
+    "variant=release"
+    "link=static"
+    "runtime-link=static"
+    "cxxflags=${COMPILE_OPTIONS[*]}"
+)
+
 sudo ./b2 "${BUILD_ARGS[@]}" stage
 sudo ./b2 "${BUILD_ARGS[@]}" --prefix=/opt/boost/ install
 
@@ -179,7 +191,12 @@ sudo tar -I pigz -xf ./unordered_dense.tar.gz -C ./unordered_dense/ --strip-comp
 cd ./unordered_dense/
 
 mkdir -p ./build/ && cd ./build/
-sudo cmake "-DCMAKE_INSTALL_PREFIX:PATH=/opt/unordered_dense/" ../
+
+sudo cmake \
+    -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS}" \
+    -DCMAKE_INSTALL_PREFIX:PATH=/opt/unordered_dense/ \
+    ../
+
 sudo cmake --build ./ --target install --parallel "${PARALLEL}"
 
 
