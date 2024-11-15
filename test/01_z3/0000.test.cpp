@@ -26,10 +26,10 @@ SOFTWARE.
 
 --*/
 
+#include <z3++.h>
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include <z3++.h>
 
 using namespace z3;
 

@@ -12,8 +12,11 @@ cd ./z3/
 
 mkdir -p ./build/ && cd ./build/
 
-sudo cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/opt/z3/ \
+sudo cmake \
+    -DCMAKE_BUILD_TYPE:STRING=Release \
+    -DCMAKE_INSTALL_PREFIX:PATH=/opt/z3/ \
+    -DCMAKE_CXX_COMPILER:STRING="g++-14" \
     -DCMAKE_CXX_FLAGS:STRING="${INTERNAL_BUILD_FLAGS[*]}" \
     ../
 
-sudo make "-j${PARALLEL}"
+sudo make install "-j${PARALLEL}"
