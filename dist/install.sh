@@ -4,29 +4,36 @@
 ####################################
 
 # shellcheck disable=all
-COMPILE_OPTIONS=(
+
+BASIC_BUILD_FLAGS=(
     "-std=gnu++23"
+
+    -O2
+
+    -fcoroutines
+    -lstdc++exp
+)
+
+BASIC_USER_BUILD_FLAGS=(
+    ${BASIC_BUILD_FLAGS[@]}
 
     -DONLINE_JUDGE
     -DATCODER
 
-    -fcoroutines
-
-    -O2
-    "-march=native"
-    "-flto=auto"
-
     -Wall
     -Wextra
+)
+
+EXTRA_USER_BUILD_FLAGS=(
+    "-march=native"
+    "-flto=auto"
 
     "-fconstexpr-depth=2147483647"
     "-fconstexpr-loop-limit=2147483647"
     "-fconstexpr-ops-limit=2147483647"
-
-    -lstdc++exp
 )
 
-LIBRARIES=(
+USER_LIBRARY_FLAGS=(
     -I/opt/abseil/include/ -L/opt/abseil/lib/
     -I/opt/ac-library/
     -I/opt/boost/include/ -L/opt/boost/lib/
@@ -37,6 +44,17 @@ LIBRARIES=(
 
     -I/opt/libtorch/include/ -I/opt/libtorch/include/torch/csrc/api/include/ -L/opt/libtorch/lib/
     -Wl,-R/opt/libtorch/lib/ -ltorch -ltorch_cpu -lc10
+)
+
+INTERNAL_BUILD_FLAGS=( # for internal library building (CMake).
+    ${BASIC_BUILD_FLAGS[@]}
+    -w
+)
+
+USER_BUILD_FLAGS=( # for contestants.
+    ${BASIC_USER_BUILD_FLAGS[@]}
+    ${EXTRA_USER_BUILD_FLAGS[@]}
+    ${USER_LIBRARY_FLAGS[@]}
 )
 
 # shellcheck disable=all
@@ -69,7 +87,7 @@ mkdir -p ./build/ && cd ./build/
 BUILD_ARGS=(
     -DABSL_PROPAGATE_CXX_STD:BOOL=ON
     -DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/
-    -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS[*]}"
+    -DCMAKE_CXX_FLAGS:STRING="${INTERNAL_BUILD_FLAGS[*]}"
 )
 
 if [[ -v RUN_TEST ]]; then
@@ -119,7 +137,7 @@ BUILD_ARGS=(
     "variant=release"
     "link=static"
     "runtime-link=static"
-    "cxxflags=${COMPILE_OPTIONS[*]}"
+    "cxxflags=${INTERNAL_BUILD_FLAGS[*]}"
 )
 
 sudo ./b2 "${BUILD_ARGS[@]}" stage
@@ -193,7 +211,7 @@ cd ./unordered_dense/
 mkdir -p ./build/ && cd ./build/
 
 sudo cmake \
-    -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS}" \
+    -DCMAKE_CXX_FLAGS:STRING="${INTERNAL_BUILD_FLAGS[*]}" \
     -DCMAKE_INSTALL_PREFIX:PATH=/opt/unordered_dense/ \
     ../
 
