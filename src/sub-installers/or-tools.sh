@@ -13,7 +13,7 @@ cd ./or-tools/
 BUILD_TESTING=OFF
 GENERATOR="Unix Makefiles"
 
-if [[ ! -v GITHUB_ACTIONS ]]; then
+if [[ -v RUN_TEST ]]; then
     BUILD_TESTING=ON
 
     if [[ ! -v ATCODER ]]; then
@@ -37,6 +37,6 @@ sudo cmake -G "${GENERATOR}" \
 
 sudo cmake --build ./ --config Release --target install --parallel "${PARALLEL}"
 
-if [[ ! -v GITHUB_ACTIONS ]]; then
+if [[ -v RUN_TESTIONS ]]; then
     sudo cmake --build ./ --config Release --target test --parallel "${PARALLEL}"
 fi
