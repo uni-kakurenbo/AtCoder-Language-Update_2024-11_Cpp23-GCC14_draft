@@ -1,0 +1,16 @@
+#!/bin/bash
+set -eu
+
+cd /tmp/
+
+mkdir -p ./z3/
+
+sudo wget -q "https://github.com/Z3Prover/z3/archive/refs/tags/z3-${VERSION}.tar.gz" -O ./z3.tar.gz
+sudo tar -I pigz -xf ./z3.tar.gz -C ./z3/ --strip-components 1
+
+cd ./z3/
+
+mkdir -p ./build/ && cd ./build/
+
+sudo cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/z3/ -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS[*]}" "${BUILD_ARGS[@]}" ../
+sudo cmake --build ./ --target install --parallel "${PARALLEL}"

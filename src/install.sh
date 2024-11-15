@@ -15,5 +15,6 @@ sudo apt-get install -y build-essential pigz pbzip2
 ./sub-installers/libtorch.sh
 ./sub-installers/range-v3.sh
 ./sub-installers/unordered_dense.sh
+./sub-installers/Z3.sh
 
 sudo apt-get remove -y --auto-remove build-essential pigz pbzip2
