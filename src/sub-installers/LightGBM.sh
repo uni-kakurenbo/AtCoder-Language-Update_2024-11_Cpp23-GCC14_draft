@@ -13,5 +13,5 @@ sudo rm -rf ./lightgbm/
 
 mkdir -p ./build/ && cd ./build/
 
-sudo cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/light-gbm/ -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS[*]}" ../
+sudo cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/light-gbm/ -DCMAKE_CXX_FLAGS:STRING="${INTERNAL_BUILD_FLAGS[*]}" ../
 sudo cmake --build ./ --target install --parallel "${PARALLEL}"
