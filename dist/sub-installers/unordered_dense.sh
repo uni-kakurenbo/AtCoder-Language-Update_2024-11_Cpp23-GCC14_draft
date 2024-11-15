@@ -18,7 +18,7 @@ cd ./unordered_dense/
 mkdir -p ./build/ && cd ./build/
 
 sudo cmake \
-    -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS}" \
+    -DCMAKE_CXX_FLAGS:STRING="${INTERNAL_BUILD_FLAGS[*]}" \
     -DCMAKE_INSTALL_PREFIX:PATH=/opt/unordered_dense/ \
     ../
 

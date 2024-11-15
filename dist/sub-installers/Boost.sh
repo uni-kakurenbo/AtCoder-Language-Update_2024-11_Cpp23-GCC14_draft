@@ -25,7 +25,7 @@ BUILD_ARGS=(
     "variant=release"
     "link=static"
     "runtime-link=static"
-    "cxxflags=${COMPILE_OPTIONS[*]}"
+    "cxxflags=${INTERNAL_BUILD_FLAGS[*]}"
 )
 
 sudo ./b2 "${BUILD_ARGS[@]}" stage

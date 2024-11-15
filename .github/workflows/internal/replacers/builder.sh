@@ -7,7 +7,7 @@ SHEBANG='#!/bin/bash'
     echo "${SHEBANG}"
     cat ./assets/warning.txt
     echo
-    cat ./src/compile-options.sh
+    cat ./src/build-flags.sh
 
     TARGET="$(cat ./src/compile.sh)"
     echo "${TARGET//"${SHEBANG}"/}"
