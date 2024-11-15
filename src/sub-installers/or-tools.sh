@@ -33,6 +33,8 @@ sudo cmake -G "${GENERATOR}" \
     -DBUILD_TESTING:BOOL="${BUILD_TESTING}" \
     -DCMAKE_PREFIX_PATH:PATH=/opt/abseil/ \
     -DCMAKE_INSTALL_PREFIX:PATH=/opt/or-tools/ \
+    -DCMAKE_CXX_COMPILER:STRING="g++-14" \
+    -DCMAKE_CXX_FLAGS="${INTERNAL_BUILD_FLAGS[*]}" \
     ../
 
 sudo cmake --build ./ --config Release --target install --parallel "${PARALLEL}"
