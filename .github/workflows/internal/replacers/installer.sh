@@ -8,18 +8,18 @@ SHEBANG='#!/bin/bash'
     cat ./assets/warning.txt
 } >./dist/install.sh
 
-REMOVABLE_HEADER="$(cat ./dist/install.sh)"
+HEADER="$(cat ./dist/install.sh)"
 
 VERSION="$(dasel -r toml -w json <./src/install.toml | jq '.version')"
 {
     echo
-    cat ./src/compile-options.sh
+    cat ./src/build-flags.sh
     echo
     cat ./assets/parallel.sh
     echo -e "\nVERSION=${VERSION}"
 } >>./dist/install.sh
 
-INSTALLER="$(cat ./src/install.sh)"
+INSTALLER="$(sed -e '/^\#/d' ./src/install.sh)"
 echo -e "${INSTALLER//${SHEBANG}/}" >>./dist/install.sh
 
 mkdir -p ./dist/
@@ -36,7 +36,7 @@ function replace() {
     local target
     target=$(cat ./install.sh)
 
-    echo -e "${target//"$1"/"# ${name}${content}\n"}" >./install.sh
+    echo -e "${target//"$1"/"\n# ${name}${content}\n"}" >./install.sh
 }
 
 export -f replace
@@ -44,6 +44,6 @@ export -f replace
 cd ./dist/
 
 find ./sub-installers/ -type f -name '*.sh' -print0 |
-    xargs -0 -I {} bash -c "replace {} \"${REMOVABLE_HEADER}\""
+    xargs -0 -I {} bash -c "replace {} \"${HEADER}\""
 
 echo >>./install.sh

@@ -1,8 +1,3 @@
-#!/bin/bash
-########## AUTO-GENERATED ##########
-# Do not modify this file manually #
-####################################
-
 # shellcheck disable=all
 
 BASIC_BUILD_FLAGS=(
@@ -25,6 +20,8 @@ BASIC_USER_BUILD_FLAGS=(
 )
 
 EXTRA_USER_BUILD_FLAGS=(
+    -fopenmp
+
     "-march=native"
     "-flto=auto"
 
@@ -56,7 +53,3 @@ USER_BUILD_FLAGS=( # for contestants.
     ${EXTRA_USER_BUILD_FLAGS[@]}
     ${USER_LIBRARY_FLAGS[@]}
 )
-
-set -eu
-
-g++-14 ./Main.cpp -o a.out "${USER_BUILD_FLAGS[@]}"
