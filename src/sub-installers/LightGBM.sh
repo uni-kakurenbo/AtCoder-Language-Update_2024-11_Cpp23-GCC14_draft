@@ -10,6 +10,7 @@ sudo tar -I pigz -xf ./light-gbm.tar.gz -C ./light-gbm/ --strip-components 1
 
 cd ./light-gbm/
 sudo rm -rf ./lightgbm/
+sudo rm -rf ./external_libs/eigen/
 
 mkdir -p ./build/ && cd ./build/
 
