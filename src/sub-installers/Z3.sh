@@ -13,7 +13,7 @@ cd ./z3/
 mkdir -p ./build/ && cd ./build/
 
 sudo cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/opt/z3/ \
-    -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS[*]}" \
+    -DCMAKE_CXX_FLAGS:STRING="${INTERNAL_BUILD_FLAGS[*]}" \
     ../
 
-sudo make -j "${PARALLEL}"
+sudo make "-j${PARALLEL}"
