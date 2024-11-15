@@ -15,7 +15,7 @@ mkdir -p ./build/ && cd ./build/
 BUILD_ARGS=(
     -DABSL_PROPAGATE_CXX_STD:BOOL=ON
     -DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/
-    -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS[*]}"
+    -DCMAKE_CXX_FLAGS:STRING="${INTERNAL_BUILD_FLAGS[*]}"
 )
 
 if [[ -v RUN_TEST ]]; then
