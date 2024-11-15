@@ -13,7 +13,7 @@ HEADER="$(cat ./dist/install.sh)"
 VERSION="$(dasel -r toml -w json <./src/install.toml | jq '.version')"
 {
     echo
-    cat ./src/compile-options.sh
+    cat ./src/build-flags.sh
     echo
     cat ./assets/parallel.sh
     echo -e "\nVERSION=${VERSION}"

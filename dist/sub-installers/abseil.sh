@@ -17,15 +17,19 @@ cd ./abseil/
 
 mkdir -p ./build/ && cd ./build/
 
-BUILD_ARGS=("-DABSL_PROPAGATE_CXX_STD=ON" "-DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/")
+BUILD_ARGS=(
+    -DABSL_PROPAGATE_CXX_STD:BOOL=ON
+    -DCMAKE_INSTALL_PREFIX:PATH=/opt/abseil/
+    -DCMAKE_CXX_FLAGS:STRING="${INTERNAL_BUILD_FLAGS[*]}"
+)
 
-if [[ -v GITHUB_ACTIONS ]]; then
-    sudo cmake "${BUILD_ARGS[@]}" ../
-else
+if [[ -v RUN_TEST ]]; then
     sudo cmake -DABSL_BUILD_TESTING=ON -DABSL_USE_GOOGLETEST_HEAD=ON "${BUILD_ARGS[@]}" ../
 
     sudo make "-j${PARALLEL}"
     sudo ctest --parallel "${PARALLEL}"
+else
+    sudo cmake "${BUILD_ARGS[@]}" ../
 fi
 
 sudo cmake --build ./ --target install --parallel "${PARALLEL}"

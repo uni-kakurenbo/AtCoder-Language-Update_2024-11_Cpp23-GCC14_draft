@@ -16,5 +16,10 @@ sudo tar -I pigz -xf ./unordered_dense.tar.gz -C ./unordered_dense/ --strip-comp
 cd ./unordered_dense/
 
 mkdir -p ./build/ && cd ./build/
-sudo cmake "-DCMAKE_INSTALL_PREFIX:PATH=/opt/unordered_dense/" ../
+
+sudo cmake \
+    -DCMAKE_CXX_FLAGS:STRING="${INTERNAL_BUILD_FLAGS[*]}" \
+    -DCMAKE_INSTALL_PREFIX:PATH=/opt/unordered_dense/ \
+    ../
+
 sudo cmake --build ./ --target install --parallel "${PARALLEL}"
