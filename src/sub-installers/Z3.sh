@@ -12,5 +12,8 @@ cd ./z3/
 
 mkdir -p ./build/ && cd ./build/
 
-sudo cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/z3/ -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS[*]}" "${BUILD_ARGS[@]}" ../
-sudo cmake --build ./ --target install --parallel "${PARALLEL}"
+sudo cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/opt/z3/ \
+    -DCMAKE_CXX_FLAGS:STRING="${COMPILE_OPTIONS[*]}" \
+    ../
+
+sudo make -j "${PARALLEL}"
